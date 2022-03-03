@@ -1,7 +1,7 @@
 #include "model.hpp"
 
 #include <fstream>
-#include "assert.h"
+#include <assert.h>
 
 bool isAmountRight(int verticesAmount, int edgesAmount) {
     return (verticesAmount > 0 && edgesAmount > 0) && \
@@ -56,3 +56,28 @@ err_t loadModel(model_t *model, std::string& filename) {
     }
     return error;
 }
+
+const vector3d_t& getIJVertex(const model_t *model, int i, int j) {
+    return model->vertices.at(getIEnd(model->edges.at(i), j));
+}
+
+err_t renderModel(const model_t *model, const screen_t *screen) {
+    for (size_t i = 0; i < model->edges.size(); i++) {
+        vector2d_t a = project3dOn2d(getIJVertex(model, i, 0), screen);
+        vector2d_t b = project3dOn2d(getIJVertex(model, i, 1), screen);
+        screen->canvas->painter.drawLine(QPointF(a.x, a.y), QPointF(b.x, b.y));
+    }
+    return NONE;
+}
+
+err_t transformModel(model_t *model, const transformMeta_t *transformMeta) {
+    const transform_t transform = createTransform(transformMeta);
+    for (size_t i = 0; i < model->vertices.size(); i++)
+        model->vertices.at(i) = transformVector3d(transform, model->vertices.at(i));
+    return NONE;
+}
+
+
+
+
+

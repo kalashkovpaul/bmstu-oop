@@ -1,6 +1,10 @@
-#pragma once
+#ifndef COMMAND_HPP
+#define COMMAND_HPP
 
 #include <string>
+
+#include "screen.hpp"
+#include "transformMeta.hpp"
 
 typedef enum {
     LOAD_MODEL,
@@ -12,4 +16,8 @@ typedef enum {
 
 typedef struct {
     std::string &filename;
+    screen_t *screen;
+    transformMeta_t *transformMeta;
 } command_data_t; 
+
+#endif

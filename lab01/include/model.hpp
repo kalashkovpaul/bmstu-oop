@@ -13,4 +13,4 @@ typedef struct {
     std::vector<edge_t> edges;
 } model_t;
 
-err_t loadModel(model_t &model, const std::string &filename);
+err_t loadModel(model_t *model, std::string &filename);

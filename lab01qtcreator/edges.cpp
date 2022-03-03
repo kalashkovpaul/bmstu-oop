@@ -1,11 +1,20 @@
 #include "edges.hpp"
 
+int getIEnd(const edge_t& edge, int i) {
+    int end = 0;
+    if (i == 1)
+        end = edge.end2;
+    else
+        end = edge.end1;
+    return end;
+}
+
 bool readEdge(edge_t& edge, std::ifstream& file) {
     bool ok = true;
     int end1 = 0; int end2 = 0;
     if (file >> end1 >> end2) {
-        edge.ends.end1 = end1;
-        edge.ends.end2 = end2;
+        edge.end1 = end1;
+        edge.end2 = end2;
     } else
         ok = false;
     return ok;

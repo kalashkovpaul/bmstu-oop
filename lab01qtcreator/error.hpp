@@ -1,4 +1,7 @@
-#pragma once
+#ifndef ERROR_HPP
+#define ERROR_HPP
+
+#include "global.hpp"
 
 typedef enum {
     NONE,
@@ -12,3 +15,5 @@ typedef enum {
 void printMessage(err_t error);
 
 void printOptions();
+
+#endif

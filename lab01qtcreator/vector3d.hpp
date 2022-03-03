@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR3D_HPP
+#define VECTOR3D_HPP
 
 #include <iostream>
 #include <vector>
@@ -15,4 +16,6 @@ extern const vector3d_t unit_z;
 
 
 bool readVectors3d(std::vector<vector3d_t>& vertices, std::ifstream& file);
+
+#endif
 
