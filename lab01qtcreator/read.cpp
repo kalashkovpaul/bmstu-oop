@@ -1,7 +1,9 @@
 #include "read.hpp"
+#include "global.hpp"
+#include "execute.hpp"
 
 err_t readLoad() {
-    command_data_t command_data = { .filename = filename };
+    command_data_t command_data = { filename, &screen, &transformMeta};
     return execute(LOAD_MODEL, command_data);
 }
 

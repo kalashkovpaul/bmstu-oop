@@ -3,11 +3,10 @@
 #include <QApplication>
 #include <QWidget>
 
-#include "MainWindow.hpp"
-#include "global.hpp"
 #include "execute.hpp"
+#include "global.hpp"
+#include "MainWindow.hpp"
 #include "read.hpp"
-#include "error.hpp"
 
 std::string filename = "";
 screen_t screen = { 10, 10, 5, 90, nullptr };

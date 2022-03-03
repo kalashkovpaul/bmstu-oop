@@ -3,7 +3,7 @@
 
 #include "transformMeta.hpp"
 
-typedef union {
+union transform_t {
     double m[4][4];
     struct {
         double
@@ -12,8 +12,7 @@ typedef union {
             m20, m21, m22, m23,
             m30, m31, m32, m33;
     };
-} transform_t;
-
+};
 
 transform_t createTransform(const transformMeta_t *transformMeta);
 

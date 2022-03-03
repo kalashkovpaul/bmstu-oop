@@ -5,9 +5,9 @@
 #include <vector>
 #include <fstream>
 
-typedef struct {
-        double x, y, z;
-} vector3d_t;
+struct vector3d_t {
+    double x, y, z;
+};
 
 extern const vector3d_t origin;
 extern const vector3d_t unit_x;

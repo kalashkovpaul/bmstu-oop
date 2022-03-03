@@ -3,32 +3,32 @@
 
 #include "vector3d.hpp"
 
-typedef enum {
+enum transformType_t{
     TRANSLATION,
     ROTATION,
     UNIFORM_SCALING
-} transformType_t;
+};
 
-typedef struct {
+struct translation_t{
     vector3d_t displacement;
-} translation_t;
+};
 
-typedef struct {
+struct rotation_t{
     vector3d_t axis;
     double angle;
-} rotation_t;
+};
 
-typedef struct uniformScaling {
+struct uniformScaling_t{
     double factor;
-} uniformScaling_t;
+};
 
-typedef struct {
+struct transformMeta_t{
     transformType_t type;
     union {
         translation_t translation;
         rotation_t rotation;
         uniformScaling_t uniformScaling;
     };
-} transformMeta_t;
+};
 
 #endif // TRANSFORMMETA_HPP

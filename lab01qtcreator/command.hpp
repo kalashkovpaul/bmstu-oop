@@ -6,18 +6,18 @@
 #include "screen.hpp"
 #include "transformMeta.hpp"
 
-typedef enum {
+enum command_t {
     LOAD_MODEL,
     SAVE_MODEL,
     TRANSFORM_MODEL,
     RENDER_MODEL,
     DELETE_MODEL
-} command_t;
+};
 
-typedef struct {
+struct command_data_t {
     std::string &filename;
     screen_t *screen;
     transformMeta_t *transformMeta;
-} command_data_t; 
+};
 
 #endif

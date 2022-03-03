@@ -1,4 +1,5 @@
 #include "error.hpp"
+#include "global.hpp"
 
 #include <iostream>
 

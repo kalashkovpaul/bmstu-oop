@@ -4,11 +4,9 @@
 #include <vector>
 #include <fstream>
 
-typedef struct {
+struct edge_t {
     int end1, end2;
-} edge_t;
-
-
+};
 
 int getIEnd(const edge_t& edge, int i);
 

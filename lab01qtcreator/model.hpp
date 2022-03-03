@@ -13,10 +13,11 @@
 #include "transform.hpp"
 
 #define EMPTY_MODEL {}
-typedef struct {
+
+struct model_t {
     std::vector<vector3d_t> vertices;
     std::vector<edge_t> edges;
-} model_t;
+};
 
 err_t loadModel(model_t *model, std::string &filename);
 

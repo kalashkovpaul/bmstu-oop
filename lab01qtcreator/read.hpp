@@ -2,8 +2,6 @@
 #define READ_HPP
 
 #include "error.hpp"
-#include "global.hpp"
-#include "execute.hpp"
 
 err_t readLoad();
 

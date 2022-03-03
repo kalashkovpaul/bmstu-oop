@@ -1,4 +1,8 @@
 #include "Canvas.hpp"
+#include "vector3d.hpp"
+#include "transformMeta.hpp"
+#include "global.hpp"
+#include "read.hpp"
 
 #include <iostream>
 
@@ -7,6 +11,9 @@ Canvas::Canvas(QWidget *parent)
       clearColor(Qt::red)
 {
     setAutoFillBackground(false);
+    setMouseTracking(true);
+    previousX = -1;
+    previousY = -1;
 }
 
 
@@ -20,8 +27,11 @@ void Canvas::paintEvent(QPaintEvent *e) {
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *e) {
-    int dx = e->x() - e->globalX();
-    int dy = e->y() - e->globalY();
+    int dx = e->globalX() - previousX;
+    int dy = previousY - e->globalY();
+    previousX = e->globalX();
+    previousY = e->globalY();
+
     Qt::MouseButtons buttons = e->buttons();
 
     if ((dx || dy) && (buttons)) {
