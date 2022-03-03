@@ -12,4 +12,6 @@ int getIEnd(const edge_t& edge, int i);
 
 bool readEdges(std::vector<edge_t>& edges, std::ifstream& file);
 
+void writeEdges(const std::vector<edge_t>& edges, std::ofstream& file);
+
 #endif

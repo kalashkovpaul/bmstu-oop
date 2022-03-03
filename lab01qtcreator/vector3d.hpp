@@ -17,5 +17,7 @@ extern const vector3d_t unit_z;
 
 bool readVectors3d(std::vector<vector3d_t>& vertices, std::ifstream& file);
 
+void writeVectors3d(const std::vector<vector3d_t>& vertices, std::ofstream &file);
+
 #endif
 

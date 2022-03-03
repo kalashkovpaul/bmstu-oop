@@ -13,6 +13,6 @@ struct screen_t {
     Canvas* canvas;
 };
 
-vector2d_t project3dOn2d(const vector3d_t& vector3d, const screen_t *screen);
+vector2d_t project3dOn2d(const vector3d_t& vector3d, const screen_t& screen);
 
 #endif // SCREEN_HPP

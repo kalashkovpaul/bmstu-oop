@@ -25,3 +25,12 @@ bool readVectors3d(std::vector<vector3d_t>& vertices, std::ifstream& file) {
     }
     return ok;
 }
+
+void writeSingleVector3d(const vector3d_t& vector3d, std::ofstream &file) {
+    file << vector3d.x << " " << vector3d.y << " " << vector3d.z << std::endl;
+}
+
+void writeVectors3d(const std::vector<vector3d_t>& vertices, std::ofstream &file) {
+    for (size_t i = 0; i < vertices.size(); i++)
+        writeSingleVector3d(vertices.at(i), file);
+}

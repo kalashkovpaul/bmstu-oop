@@ -12,6 +12,7 @@ Canvas::Canvas(QWidget *parent)
 {
     setAutoFillBackground(false);
     setMouseTracking(true);
+    setFocusPolicy(Qt::ClickFocus);
     previousX = -1;
     previousY = -1;
 }
@@ -55,4 +56,27 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
     std::cout << "Mooove" << std::endl;
 }
 
+
+void Canvas::wheelEvent(QWheelEvent *e) {
+    std::cout << "Wheeeel" << e->buttons() << " " << e->delta() << std::endl;
+    transformMeta.type = UNIFORM_SCALING;
+    if (e->delta() > 0)
+        transformMeta.uniformScaling.factor = 1.0 / 0.9;
+    else
+        transformMeta.uniformScaling.factor = 0.9;
+    readTransform();
+    update();
+}
+
+void Canvas::keyPressEvent(QKeyEvent *e) {
+    std::cout << "PRESS" << std::endl;
+    if (e->matches(QKeySequence::Save)) {
+        std::cout << "SAVE" << std::endl;
+        readSave();
+    } else if (e->matches(QKeySequence::Refresh)) {
+        std::cout << "RESET" << std::endl;
+        readLoad();
+        update();
+    }
+}
 

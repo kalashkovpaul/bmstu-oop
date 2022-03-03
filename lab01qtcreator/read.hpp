@@ -11,6 +11,4 @@ err_t readTransform();
 
 err_t readRender();
 
-err_t readDelete();
-
 #endif

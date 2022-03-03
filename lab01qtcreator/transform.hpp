@@ -14,7 +14,7 @@ union transform_t {
     };
 };
 
-transform_t createTransform(const transformMeta_t *transformMeta);
+transform_t createTransform(const transformMeta_t& transformMeta);
 
 vector3d_t transformVector3d(const transform_t& transform, const vector3d_t& vector3d);
 

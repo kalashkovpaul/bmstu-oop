@@ -28,3 +28,12 @@ bool readEdges(std::vector<edge_t>& edges, std::ifstream& file) {
     }
     return ok;
 }
+
+void writeSingleEdge(const edge_t& edge, std::ofstream& file) {
+    file << edge.end1 << " " << edge.end2 << std::endl;
+}
+
+void writeEdges(const std::vector<edge_t>& edges, std::ofstream& file) {
+    for (size_t i = 0; i < edges.size(); i++)
+        writeSingleEdge(edges.at(i), file);
+}

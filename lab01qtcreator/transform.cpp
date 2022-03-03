@@ -63,17 +63,17 @@ transform_t uniformScale(const uniformScaling_t& uniformScaling) {
     return createUniformScalingTransform(factor);
 }
 
-transform_t createTransform(const transformMeta_t *transformMeta) {
+transform_t createTransform(const transformMeta_t& transformMeta) {
     transform_t transform = identity;
-    switch (transformMeta->type) {
+    switch (transformMeta.type) {
     case TRANSLATION:
-        transform = translate(transformMeta->translation);
+        transform = translate(transformMeta.translation);
         break;
     case ROTATION:
-        transform = rotate(transformMeta->rotation);
+        transform = rotate(transformMeta.rotation);
         break;
     case UNIFORM_SCALING:
-        transform = uniformScale(transformMeta->uniformScaling);
+        transform = uniformScale(transformMeta.uniformScaling);
         break;
     default:
         assert(0);
