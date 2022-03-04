@@ -4,14 +4,13 @@
 #include "Canvas.hpp"
 #include <QMainWindow>
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     MainWindow();
     void initCanvas();
-    Canvas *canvas;
+    Canvas* canvas;
 };
 
 #endif

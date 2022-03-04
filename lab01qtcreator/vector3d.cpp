@@ -5,32 +5,32 @@ const vector3d_t unit_x = { 1.0, 0.0, 0.0 };
 const vector3d_t unit_y = { 0.0, 1.0, 0.0 };
 const vector3d_t unit_z = { 0.0, 0.0, 1.0 };
 
-bool readVector3d(vector3d_t& vector, std::ifstream& file) {
-    double x = 0, y = 0, z = 0;
+bool readVector3d(vector3d_t& vector, FILE* file)
+{
     bool ok = true;
-    if (file >> x >> y >> z) {
-        vector.x = x;
-        vector.y = y;
-        vector.z = z;
-    } else
+    int tmp = fscanf(file, "%lf %lf %lf", &vector.x, &vector.y, &vector.z);
+    if (tmp != 3)
         ok = false;
     return ok;
 }
 
-bool readVectors3d(std::vector<vector3d_t>& vertices, std::ifstream& file) {
+bool readVectors3d(vector3d_t* vertices, const int verticesAmount, FILE* file)
+{
     bool ok = true;
-    for (size_t i = 0; i < vertices.size() && ok; i++) {
-        vector3d_t& vector = vertices.at(i);
+    for (int i = 0; i < verticesAmount && ok; i++) {
+        vector3d_t& vector = vertices[i];
         ok = readVector3d(vector, file);
     }
     return ok;
 }
 
-void writeSingleVector3d(const vector3d_t& vector3d, std::ofstream &file) {
-    file << vector3d.x << " " << vector3d.y << " " << vector3d.z << std::endl;
+void writeSingleVector3d(const vector3d_t& vector3d, FILE* file)
+{
+    fprintf(file, "%lf %lf %lf\n", vector3d.x, vector3d.y, vector3d.z);
 }
 
-void writeVectors3d(const std::vector<vector3d_t>& vertices, std::ofstream &file) {
-    for (size_t i = 0; i < vertices.size(); i++)
-        writeSingleVector3d(vertices.at(i), file);
+void writeVectors3d(const vector3d_t* vertices, const int verticesAmount, FILE* file)
+{
+    for (int i = 0; i < verticesAmount; i++)
+        writeSingleVector3d(vertices[i], file);
 }

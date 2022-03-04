@@ -1,24 +1,25 @@
-#include <iostream>
-#include <string>
 #include <QApplication>
 #include <QWidget>
+#include <iostream>
+#include <string>
 
+#include "MainWindow.hpp"
 #include "execute.hpp"
 #include "global.hpp"
-#include "MainWindow.hpp"
 #include "read.hpp"
 
-std::string filename = "";
+const char* filename = NULL;
 screen_t screen = { 10, 10, 5, 90, nullptr };
 transformMeta_t transformMeta;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
     if (argc != 2) {
         printMessage(WRONG_USAGE);
         return EXIT_FAILURE;
     }
 
-    filename = std::string(argv[1]);
+    filename = argv[1];
 
     err_t error = readLoad();
     if (error) {

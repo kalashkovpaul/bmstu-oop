@@ -2,8 +2,8 @@
 #define SCREEN_HPP
 
 #include "Canvas.hpp"
-#include "vector3d.hpp"
 #include "vector2d.hpp"
+#include "vector3d.hpp"
 
 struct screen_t {
     double width;

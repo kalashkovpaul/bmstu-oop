@@ -1,14 +1,14 @@
 #include "Canvas.hpp"
-#include "vector3d.hpp"
-#include "transformMeta.hpp"
 #include "global.hpp"
 #include "read.hpp"
+#include "transformMeta.hpp"
+#include "vector3d.hpp"
 
 #include <iostream>
 
-Canvas::Canvas(QWidget *parent)
-    : QOpenGLWidget(parent),
-      clearColor(Qt::red)
+Canvas::Canvas(QWidget* parent)
+    : QOpenGLWidget(parent)
+    , clearColor(Qt::red)
 {
     setAutoFillBackground(false);
     setMouseTracking(true);
@@ -17,9 +17,8 @@ Canvas::Canvas(QWidget *parent)
     previousY = -1;
 }
 
-
-void Canvas::paintEvent(QPaintEvent *e) {
-    std::cout << "Painting" << std::endl;
+void Canvas::paintEvent(QPaintEvent* e)
+{
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.fillRect(e->rect(), QBrush(QColor(255, 255, 255)));
@@ -27,7 +26,8 @@ void Canvas::paintEvent(QPaintEvent *e) {
     painter.end();
 }
 
-void Canvas::mouseMoveEvent(QMouseEvent *e) {
+void Canvas::mouseMoveEvent(QMouseEvent* e)
+{
     int dx = e->globalX() - previousX;
     int dy = previousY - e->globalY();
     previousX = e->globalX();
@@ -52,13 +52,10 @@ void Canvas::mouseMoveEvent(QMouseEvent *e) {
         update();
     }
 
-    std::cout << buttons << std::endl;
-    std::cout << "Mooove" << std::endl;
 }
 
-
-void Canvas::wheelEvent(QWheelEvent *e) {
-    std::cout << "Wheeeel" << e->buttons() << " " << e->delta() << std::endl;
+void Canvas::wheelEvent(QWheelEvent* e)
+{
     transformMeta.type = UNIFORM_SCALING;
     if (e->delta() > 0)
         transformMeta.uniformScaling.factor = 1.0 / 0.9;
@@ -68,15 +65,12 @@ void Canvas::wheelEvent(QWheelEvent *e) {
     update();
 }
 
-void Canvas::keyPressEvent(QKeyEvent *e) {
-    std::cout << "PRESS" << std::endl;
+void Canvas::keyPressEvent(QKeyEvent* e)
+{
     if (e->matches(QKeySequence::Save)) {
-        std::cout << "SAVE" << std::endl;
         readSave();
     } else if (e->matches(QKeySequence::Refresh)) {
-        std::cout << "RESET" << std::endl;
         readLoad();
         update();
     }
 }
-
