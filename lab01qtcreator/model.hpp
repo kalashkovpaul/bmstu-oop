@@ -31,4 +31,6 @@ err_t transformModel(model_t* model, const transformMeta_t& transformMeta);
 
 err_t dumpModel(const model_t* model, const char* filename);
 
+void deleteModel(model_t *model);
+
 #endif

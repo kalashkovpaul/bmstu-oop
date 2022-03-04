@@ -8,7 +8,8 @@ enum command_t {
     LOAD_MODEL,
     SAVE_MODEL,
     TRANSFORM_MODEL,
-    RENDER_MODEL
+    RENDER_MODEL,
+    DELETE_MODEL
 };
 
 struct command_data_t {

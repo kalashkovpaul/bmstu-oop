@@ -22,7 +22,7 @@ bool readEdge(edge_t& edge, FILE* file)
 bool readEdges(edge_t* edges, const int edgesAmount, FILE* file)
 {
     bool ok = true;
-    for (size_t i = 0; i < edgesAmount && ok; i++) {
+    for (int i = 0; i < edgesAmount && ok; i++) {
         edge_t& edge = edges[i];
         ok = readEdge(edge, file);
     }

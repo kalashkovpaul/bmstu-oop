@@ -17,6 +17,9 @@ err_t execute(command_t command, const command_data_t& commandData)
     case RENDER_MODEL:
         error = renderModel(&model, commandData.screen);
         break;
+    case DELETE_MODEL:
+        deleteModel(&model);
+        break;
     default:
         error = WRONG_COMMAND;
         break;

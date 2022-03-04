@@ -18,6 +18,7 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent* e) override;
     virtual void wheelEvent(QWheelEvent* e) override;
     virtual void keyPressEvent(QKeyEvent* e) override;
+    virtual void closeEvent(QCloseEvent* e) override;
 
 private:
     int realWidth, realHeight;

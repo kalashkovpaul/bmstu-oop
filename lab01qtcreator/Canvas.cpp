@@ -74,3 +74,8 @@ void Canvas::keyPressEvent(QKeyEvent* e)
         update();
     }
 }
+
+void Canvas::closeEvent(QCloseEvent* e)
+{
+    readDelete();
+}

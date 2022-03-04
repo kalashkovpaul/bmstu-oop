@@ -25,3 +25,9 @@ err_t readRender()
     command_data_t command_data = { filename, screen, transformMeta };
     return execute(RENDER_MODEL, command_data);
 }
+
+err_t readDelete()
+{
+    command_data_t command_data = { filename, screen, transformMeta };
+    return execute(DELETE_MODEL, command_data);
+}
