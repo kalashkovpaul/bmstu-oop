@@ -4,6 +4,7 @@
 
 #include <cstddef>
 
+
 class BaseCollection {
 public:
     virtual bool isEmpty() const;

@@ -26,14 +26,14 @@ public:
     ConstSetIterator<T>& operator=(const ConstSetIterator<T>& iterator);
 
     virtual ConstSetIterator<T>& operator++();
-    virtual const ConstSetIterator<T>& operator++(int);
+    virtual const ConstSetIterator<T> operator++(int);
     virtual ConstSetIterator<T>& operator--();
-    virtual const ConstSetIterator<T>& operator--(int);
+    virtual const ConstSetIterator<T> operator--(int);
 
     bool operator!=(const ConstSetIterator<T>& iterator) const;
     bool operator==(const ConstSetIterator<T>& iterator) const;
 
-    // template<typename U>
+    template<typename U>
     friend class Set;
 
 protected:

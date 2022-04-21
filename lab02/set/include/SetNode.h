@@ -13,7 +13,7 @@ class SetNode {
 public:
     SetNode() = default;
     explicit SetNode(const T& data);
-    explicit SetNode(std::shared_ptr<SetNode<T>>& node);
+    explicit SetNode(const std::shared_ptr<SetNode<T>>& node);
 
     ~SetNode() = default;
 
@@ -38,6 +38,6 @@ public:
     bool operator<(const std::shared_ptr<SetNode<T>>& node) const;
 };
 
-#include "SetNode.hpp";
+#include "SetNode.hpp"
 
 #endif

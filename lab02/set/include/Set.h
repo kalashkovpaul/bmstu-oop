@@ -4,6 +4,7 @@
 
 #include "BaseCollection.h"
 #include "ConstSetIterator.h"
+#include "SetNode.h"
 
 #include <memory>
 
@@ -12,8 +13,8 @@ class Set: public BaseCollection {
 public:
     Set() = default;
     Set(const Set<T>& set) noexcept(false);
-    Set(const Set<T>&& set) noexcept;
-    Set(const std::initializer_list<T> elements);
+    Set(Set<T>&& set) noexcept;
+    Set(const std::initializer_list<T> elements) noexcept(false);
 
     ~Set() override;
 
@@ -24,6 +25,8 @@ public:
     
     void erase(const T& value);
     void erase(const ConstSetIterator<T>& iterator);
+
+    void clear() override;
 
     ConstSetIterator<T> begin() const;
     ConstSetIterator<T> end() const;
@@ -38,28 +41,26 @@ public:
     Set<T> update(const std::initializer_list<T> elements) noexcept(false);
     Set<T> update(T* array, size_t length) noexcept (false);
 
-    Set<T> intersect(const Set<T>& set);
     Set<T> operator&(const Set<T>& set);
+    Set<T> intersect(const Set<T>& set);
 
-    Set<T> unite(const Set<T>& set);
-    Set<T> operator|(const Set<T>& set);
+    Set<T>& operator+=(const Set<T>& set);
     Set<T>& operator|=(const Set<T>& set);
+    Set<T> operator+(const Set<T>& set);
+    Set<T> operator|(const Set<T>& set);
+    Set<T> unite(const Set<T>& set);
 
-    Set<T> difference(const Set<T>& set);
     Set<T> operator-(const Set<T>& set);
+    Set<T> difference(const Set<T>& set);
     Set<T>& operator-=(const Set<T>& set);
 
-    Set<T> symmetricDifference(const Set<T>& set);
     Set<T> operator^(const Set<T>& set);
+    Set<T> symmetricDifference(const Set<T>& set);
     Set<T>& operator^=(const Set<T>& set);
 
-    Set<T> operator+(const Set<T>& set);
-    Set<T> operator+(const T& value);
-    Set<T>& operator+=(const Set<T>& set);
-    Set<T>& operator+=(const T& value);
 
     Set<T>& operator=(const Set<T> set) noexcept(false);
-    Set<T>& operator=(Set<T>&& set) noexcept(false);
+    Set<T>& operator=(Set<T>&& set) noexcept;
 
     bool operator==(const Set<T> set) const;
     bool operator!=(const Set<T> set) const;

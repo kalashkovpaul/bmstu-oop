@@ -6,14 +6,14 @@
 #include "errors.h"
 
 template<typename T>
-SetNode<T>::SetNode(const T& data) {
+SetNode<T>::SetNode(const T& data): SetNode<T>() {
     this->data = data;
 }
 
 template<typename T>
-SetNode<T>::SetNode(std::shared_ptr<SetNode<T>>& node):
-    SetNode<T>(node.data) {
-    this->next = node.next;
+SetNode<T>::SetNode(const std::shared_ptr<SetNode<T>>& node):
+    SetNode<T>(node->data) {
+    this->next = node->next;
 }
 
 template<typename T>
@@ -35,11 +35,11 @@ void SetNode<T>::setNull() {
 template<typename T>
 void SetNode<T>::exclude() {
     if (next) {
-        next->prev = prev;
+        next->previous = previous;
     }
 
-    if (prev) {
-        prev->next = next;
+    if (previous) {
+        previous->next = next;
     }
     setNull();
 }

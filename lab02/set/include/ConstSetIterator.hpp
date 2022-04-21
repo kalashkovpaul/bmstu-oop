@@ -21,7 +21,7 @@ ConstSetIterator<T>::ConstSetIterator(const ConstSetIterator<T>& iterator) {
 
 template<typename T>
 void ConstSetIterator<T>::setCurrent(SetNode<T>& node) {
-    this->current = std::weak_ptr<SetNode>(node);
+    this->current = std::weak_ptr<SetNode<T>>(std::make_shared<SetNode<T>>(node));
 }
 
 template<typename T>
@@ -51,7 +51,7 @@ const T* ConstSetIterator<T>::operator->() const {
 
 template<typename T>
 const T& ConstSetIterator<T>::operator*() const {
-    return getCurrent().value();
+    return getCurrent().getData();
 }
 
 template<typename T>
@@ -72,7 +72,7 @@ ConstSetIterator<T>& ConstSetIterator<T>::operator++() {
 }
 
 template<typename T>
-const ConstSetIterator<T>& ConstSetIterator<T>::operator++(int) {
+const ConstSetIterator<T> ConstSetIterator<T>::operator++(int) {
     auto t = *this;
     this->next();
     return t;
@@ -85,7 +85,7 @@ ConstSetIterator<T>& ConstSetIterator<T>::operator--() {
 }
 
 template<typename T>
-const ConstSetIterator<T>& ConstSetIterator<T>::operator--(int) {
+const ConstSetIterator<T> ConstSetIterator<T>::operator--(int) {
     auto t = *this;
     this->previous();
     return t;
@@ -97,7 +97,7 @@ bool ConstSetIterator<T>::operator!=(const ConstSetIterator<T>& iterator) const 
 }
 
 template<typename T>
-bool ConstSetIterator<T>::operator!=(const ConstSetIterator<T>& iterator) const {
+bool ConstSetIterator<T>::operator==(const ConstSetIterator<T>& iterator) const {
     return this->current.lock() == iterator.current.lock();
 }
 
