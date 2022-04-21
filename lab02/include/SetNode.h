@@ -22,8 +22,6 @@ public:
     void setData(const T& value);
     void setNull();
 
-    void insertBefore(std::shared_ptr<SetNode<T>> node);
-
     void exclude();
 
     void setNext(const SetNode<T>& node);
