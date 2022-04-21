@@ -11,17 +11,12 @@ ConstSetIterator<T>::ConstSetIterator() {
 
 template<typename T>
 ConstSetIterator<T>::ConstSetIterator(const std::shared_ptr<SetNode<T>>& node) {
-    this->current.lock() = node;
+    this->current = node;
 }
 
 template<typename T>
 ConstSetIterator<T>::ConstSetIterator(const ConstSetIterator<T>& iterator) {
-    this->current.lock() = iterator.current.lock();
-}
-
-template<typename T>
-void ConstSetIterator<T>::setCurrent(SetNode<T>& node) {
-    this->current = std::weak_ptr<SetNode<T>>(std::make_shared<SetNode<T>>(node));
+    this->current = iterator.current.lock();
 }
 
 template<typename T>
@@ -51,7 +46,7 @@ const T* ConstSetIterator<T>::operator->() const {
 
 template<typename T>
 const T& ConstSetIterator<T>::operator*() const {
-    return getCurrent().getData();
+    return getCurrent().value();
 }
 
 template<typename T>

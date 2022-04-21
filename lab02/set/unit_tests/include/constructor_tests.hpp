@@ -12,11 +12,10 @@ TEST(ConstructorTest, Default) {
 
 TEST(ConstructorTest, Copy) {
     Set<int> a{1, 2, 3, 4, 5};
-    Set<int> c{1, 2, 3, 4, 5};
-    int d = 1;
-    EXPECT_EQ(a, c);
+    EXPECT_EQ(a, (Set<int>{1, 2, 3, 4, 5}));
 
     auto b = a;
+    EXPECT_EQ(a, b);
     EXPECT_EQ(b, (Set<int>{1, 2, 3, 4, 5}));
 }
 

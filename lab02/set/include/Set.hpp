@@ -7,7 +7,7 @@
 #include "errors.h"
 
 template<typename T>
-Set<T>::Set(const Set<T>& set) noexcept(false) {
+Set<T>::Set(const Set<T>& set): Set() {
     for (auto i = set.begin(); i != set.end(); ++i) {
         std::shared_ptr<SetNode<T>> tmpNode = nullptr;
         try {
@@ -28,7 +28,7 @@ Set<T>::Set(Set<T>&& set) noexcept {
 }
 
 template<typename T>
-Set<T>::Set(const std::initializer_list<T> elements) noexcept(false) {
+Set<T>::Set(const std::initializer_list<T> elements): Set() {
     for (auto &el: elements) {
         std::shared_ptr<SetNode<T>> tmpNode = nullptr;
         try {
@@ -103,11 +103,11 @@ ConstSetIterator<T> Set<T>::begin() const {
 
 template<typename T>
 ConstSetIterator<T> Set<T>::end() const {
-    return ConstSetIterator<T>(tail);
+    return ConstSetIterator<T>(tail ? tail->getNext() : nullptr);
 }
 
 template<typename T>
-bool Set<T>::add(const T& value) noexcept(false) {
+bool Set<T>::add(const T& value) {
     std::shared_ptr<SetNode<T>> tmpNode;
     try {
         tmpNode = std::shared_ptr<SetNode<T>>(new SetNode<T>);
@@ -120,7 +120,7 @@ bool Set<T>::add(const T& value) noexcept(false) {
 }
 
 template<typename T>
-bool Set<T>::add(T&& value) noexcept(false) {
+bool Set<T>::add(T&& value) {
     std::shared_ptr<SetNode<T>> tmpNode;
     try {
         tmpNode = std::shared_ptr<SetNode<T>>(new SetNode<T>);
@@ -133,7 +133,7 @@ bool Set<T>::add(T&& value) noexcept(false) {
 }
 
 template<typename T>
-bool Set<T>::add(const std::shared_ptr<SetNode<T>>& node) noexcept(false) {
+bool Set<T>::add(const std::shared_ptr<SetNode<T>>& node) {
     std::shared_ptr<SetNode<T>> tmpNode;
     try {
         tmpNode = std::shared_ptr<SetNode<T>>(new SetNode<T>);
@@ -148,7 +148,7 @@ bool Set<T>::add(const std::shared_ptr<SetNode<T>>& node) noexcept(false) {
         size++;
         return true;
     }
-    if (has(tmpNode->getData()))
+    if (find(tmpNode->getData()))
         return false;
     tmpNode->setPrevious(tail);
     tail->setNext(tmpNode);
@@ -158,7 +158,7 @@ bool Set<T>::add(const std::shared_ptr<SetNode<T>>& node) noexcept(false) {
 }
 
 template<typename T>
-void Set<T>::add(const std::initializer_list<T> elements) noexcept(false) {
+void Set<T>::add(const std::initializer_list<T> elements) {
     for (auto &el: elements) {
         std::shared_ptr<SetNode<T>> tmpNode = nullptr;
         try {
@@ -180,21 +180,21 @@ void Set<T>::add(T* array, size_t length) noexcept(false) {
 }
 
 template<typename T>
-Set<T> Set<T>::update(const T& value) noexcept(false) {
+Set<T> Set<T>::update(const T& value) {
     Set<T> result(*this);
     result.add(value);
     return result;
 }
 
 template<typename T>
-Set<T> Set<T>::update(T&& value) noexcept(false) {
+Set<T> Set<T>::update(T&& value) {
     Set<T> result(*this);
     result.add(value);
     return result;
 }
 
 template<typename T>
-Set<T> Set<T>::update(const std::initializer_list<T> elements) noexcept(false) {
+Set<T> Set<T>::update(const std::initializer_list<T> elements) {
     Set<T> result(*this);
     for (auto& el : elements) {
         result.add(el);
@@ -203,7 +203,7 @@ Set<T> Set<T>::update(const std::initializer_list<T> elements) noexcept(false) {
 }
 
 template<typename T>
-Set<T> Set<T>::update(T* array, size_t length) noexcept(false) {
+Set<T> Set<T>::update(T* array, size_t length) {
     Set<T> result(*this);
     for (size_t i = 0; i < length; ++i) {
         result.add(array[i]);
@@ -215,7 +215,7 @@ template<typename T>
 Set<T> Set<T>::operator&(const Set<T>& set) {
     Set<T> result;
     for (auto i : *this) {
-        if (!set.has(i)) {
+        if (set.find(i)) {
             result.add(i);
         }
     }
@@ -230,7 +230,7 @@ Set<T> Set<T>::intersect(const Set<T>& set) {
 template<typename T>
 Set<T>& Set<T>::operator+=(const Set<T>& set) {
     for (auto i : set) {
-        if (!has(i)) {
+        if (!find(i)) {
             add(i);
         }
     }
@@ -289,12 +289,12 @@ template<typename T>
 Set<T> Set<T>::operator^(const Set<T>& set) {
     Set<T> result;
     for (auto i : *this) {
-        if (!set.has(i)) {
+        if (!set.find(i)) {
             result.add(i);
         }
     }
     for (auto i : set) {
-        if (!has(i)) {
+        if (!find(i)) {
             result.add(i);
         }
     }
@@ -353,7 +353,7 @@ bool Set<T>::operator==(const Set<T> set) const {
         return false;
     }
     for (auto i : set) {
-        if (!has(i)) {
+        if (!find(i)) {
             return false;
         }
     }

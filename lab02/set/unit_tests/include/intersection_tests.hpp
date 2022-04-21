@@ -15,6 +15,8 @@ TEST(IntersectionTest, EmptySets) {
 TEST(IntersectionTest, NonAndEmptySet) {
     auto a = Set<int>{1, 2, 3, 4, 5};
     auto b = Set<int>();
+    auto c = a.intersect(b);
+    std::cout << c;
     EXPECT_EQ(a.intersect(b), (Set<int>()));
 }
 

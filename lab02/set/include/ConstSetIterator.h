@@ -37,7 +37,6 @@ public:
     friend class Set;
 
 protected:
-    virtual void setCurrent(SetNode<T>& node);
     virtual SetNode<T>& getCurrent();
     virtual SetNode<T>& getCurrent() const;
 

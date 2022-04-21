@@ -14,7 +14,7 @@ public:
     Set() = default;
     Set(const Set<T>& set) noexcept(false);
     Set(Set<T>&& set) noexcept;
-    Set(const std::initializer_list<T> elements) noexcept(false);
+    Set(const std::initializer_list<T> elements);
 
     ~Set() override;
 

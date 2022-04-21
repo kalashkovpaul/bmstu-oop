@@ -12,12 +12,17 @@ SetNode<T>::SetNode(const T& data): SetNode<T>() {
 
 template<typename T>
 SetNode<T>::SetNode(const std::shared_ptr<SetNode<T>>& node):
-    SetNode<T>(node->data) {
-    this->next = node->next;
+    SetNode<T>(node.data) {
+    this->next = node.next;
 }
 
 template<typename T>
 const T& SetNode<T>::getData() const {
+    return this->data;
+}
+
+template<typename T>
+T& SetNode<T>::value() {
     return this->data;
 }
 
@@ -51,7 +56,7 @@ void SetNode<T>::setNext(const SetNode<T>& node) {
 
 template<typename T>
 void SetNode<T>::setNext(const std::shared_ptr<SetNode<T>>& node) {
-    this->next = std::make_shared<SetNode<T>>(node);
+    this->next = node;
 }
 
 template<typename T>
@@ -61,7 +66,7 @@ void SetNode<T>::setPrevious(const SetNode<T>& node) {
 
 template<typename T>
 void SetNode<T>::setPrevious(const std::shared_ptr<SetNode<T>>& node) {
-    this->previous = std::make_shared<SetNode<T>>(node);
+    this->previous = node;
 }
 
 template<typename T>

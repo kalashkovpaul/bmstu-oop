@@ -19,6 +19,8 @@ public:
 
     const T& getData() const;
 
+    T& value();
+
     void setData(const T& value);
     void setNull();
 
