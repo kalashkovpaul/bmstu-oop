@@ -19,12 +19,12 @@ TEST(LookupTest, EmptySetNonEmpty) {
 
 TEST(LookupTest, EmptySetCount) {
     auto a = Set<int>();
-    EXPECT_EQ(a.getSize(), 0);
+    EXPECT_EQ(a.capacity(), 0);
 }
 
 TEST(LookupTest, NonEmptySetCount) {
     auto a = Set<int>{1, 2, 3, 4};
-    EXPECT_EQ(a.getSize(), 4);
+    EXPECT_EQ(a.capacity(), 4);
 }
 
 #endif

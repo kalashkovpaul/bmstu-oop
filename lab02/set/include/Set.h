@@ -7,7 +7,14 @@
 #include "SetNode.h"
 
 #include <memory>
-
+/*
+TODO: функции в нормальном порядке (с соответствием)
+Итератор сделать безопасно, с пробрасыванием исключения.
+Добавить конструктор для массива? Для двух итераторов?
+В константных функциях проставить const (например, операторы)
+Конструкторы сделать explicit
+Итератор наследовать от bidirectional_tag
+*/
 template<typename T>
 class Set: public BaseCollection {
 public:
@@ -21,7 +28,7 @@ public:
     bool has(const T& value) const;
     ConstSetIterator<T> find(const T& value) const;
 
-    size_t getSize() const;
+    size_t capacity() const;
     
     void erase(const T& value);
     void erase(const ConstSetIterator<T>& iterator);
@@ -41,23 +48,24 @@ public:
     Set<T> update(const std::initializer_list<T> elements) noexcept(false);
     Set<T> update(T* array, size_t length) noexcept (false);
 
-    Set<T> operator&(const Set<T>& set);
     Set<T> intersect(const Set<T>& set);
-
-    Set<T>& operator+=(const Set<T>& set);
-    Set<T>& operator|=(const Set<T>& set);
-    Set<T> operator+(const Set<T>& set);
-    Set<T> operator|(const Set<T>& set);
     Set<T> unite(const Set<T>& set);
-
-    Set<T> operator-(const Set<T>& set);
     Set<T> difference(const Set<T>& set);
-    Set<T>& operator-=(const Set<T>& set);
-
-    Set<T> operator^(const Set<T>& set);
     Set<T> symmetricDifference(const Set<T>& set);
+
+    Set<T> operator&(const Set<T>& set);
+    Set<T> operator|(const Set<T>& set);
+    Set<T> operator-(const Set<T>& set);
+    Set<T> operator^(const Set<T>& set);
+
+    /* TODO: operator&= */
+    Set<T>& operator|=(const Set<T>& set);
+    Set<T>& operator-=(const Set<T>& set);
     Set<T>& operator^=(const Set<T>& set);
 
+    /* TODO: убрать */
+    Set<T> operator+(const Set<T>& set);
+    Set<T>& operator+=(const Set<T>& set);
 
     Set<T>& operator=(const Set<T> set) noexcept(false);
     Set<T>& operator=(Set<T>&& set) noexcept;

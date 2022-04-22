@@ -66,7 +66,7 @@ ConstSetIterator<T> Set<T>::find(const T& value) const {
 }
 
 template<typename T>
-size_t Set<T>::getSize() const {
+size_t Set<T>::capacity() const {
     return size;
 }
 
