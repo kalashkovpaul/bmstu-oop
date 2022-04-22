@@ -19,7 +19,7 @@ template<typename T>
 class Set: public BaseCollection {
 public:
     Set() = default;
-    Set(const Set<T>& set) noexcept(false);
+    Set(const Set<T>& set);
     Set(Set<T>&& set) noexcept;
     Set(const std::initializer_list<T> elements);
 
@@ -38,43 +38,42 @@ public:
     ConstSetIterator<T> begin() const;
     ConstSetIterator<T> end() const;
 
-    bool add(const T& value) noexcept(false);
-    bool add(T&& value) noexcept(false);
-    void add(const std::initializer_list<T> elements) noexcept(false);
-    void add(T* array, size_t length) noexcept(false);
+    bool add(const T& value);
+    bool add(T&& value);
+    void add(const std::initializer_list<T> elements);
+    void add(T* array, size_t length);
 
-    Set<T> update(const T& value) noexcept(false);
-    Set<T> update(T&& value) noexcept(false);
-    Set<T> update(const std::initializer_list<T> elements) noexcept(false);
-    Set<T> update(T* array, size_t length) noexcept (false);
+    Set<T> update(const T& value);
+    Set<T> update(T&& value);
+    Set<T> update(const std::initializer_list<T> elements);
+    Set<T> update(T* array, size_t length);
 
-    Set<T> intersect(const Set<T>& set);
-    Set<T> unite(const Set<T>& set);
-    Set<T> difference(const Set<T>& set);
-    Set<T> symmetricDifference(const Set<T>& set);
+    Set<T> intersect(const Set<T>& set) const;
+    Set<T> unite(const Set<T>& set) const;
+    Set<T> difference(const Set<T>& set) const;
+    Set<T> symmetricDifference(const Set<T>& set)const ;
 
-    Set<T> operator&(const Set<T>& set);
-    Set<T> operator|(const Set<T>& set);
-    Set<T> operator-(const Set<T>& set);
-    Set<T> operator^(const Set<T>& set);
+    Set<T> operator&(const Set<T>& set) const;
+    Set<T> operator|(const Set<T>& set) const;
+    Set<T> operator+(const Set<T>& set) const;
+    Set<T> operator-(const Set<T>& set) const;
+    Set<T> operator^(const Set<T>& set) const;
 
     /* TODO: operator&= */
+    Set<T>& operator&=(const Set<T>& set);
     Set<T>& operator|=(const Set<T>& set);
+    Set<T>& operator+=(const Set<T>& set);
     Set<T>& operator-=(const Set<T>& set);
     Set<T>& operator^=(const Set<T>& set);
 
-    /* TODO: убрать */
-    Set<T> operator+(const Set<T>& set);
-    Set<T>& operator+=(const Set<T>& set);
-
-    Set<T>& operator=(const Set<T> set) noexcept(false);
+    Set<T>& operator=(const Set<T> set);
     Set<T>& operator=(Set<T>&& set) noexcept;
 
     bool operator==(const Set<T> set) const;
     bool operator!=(const Set<T> set) const;
 
 protected:
-    bool add(const std::shared_ptr<SetNode<T>>& node) noexcept(false);
+    bool add(const std::shared_ptr<SetNode<T>>& node);
 
 private:
     std::shared_ptr<SetNode<T>> head;

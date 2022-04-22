@@ -212,7 +212,7 @@ Set<T> Set<T>::update(T* array, size_t length) {
 }
 
 template<typename T>
-Set<T> Set<T>::operator&(const Set<T>& set) {
+Set<T> Set<T>::operator&(const Set<T>& set) const {
     Set<T> result;
     for (auto i : *this) {
         if (set.find(i)) {
@@ -223,7 +223,17 @@ Set<T> Set<T>::operator&(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T> Set<T>::intersect(const Set<T>& set) {
+Set<T>& Set<T>::operator&=(const Set<T>& set) {
+    for (auto i : *this) {
+        if (find(i)) {
+            add(i);
+        }
+    }
+    return *this;
+}
+
+template<typename T>
+Set<T> Set<T>::intersect(const Set<T>& set) const {
     return *this & set;
 }
 
@@ -244,24 +254,24 @@ Set<T>& Set<T>::operator|=(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T> Set<T>::operator+(const Set<T>& set) {
+Set<T> Set<T>::operator+(const Set<T>& set) const {
     Set<T> result(*this);
     result += set;
     return result;
 }
 
 template<typename T>
-Set<T> Set<T>::operator|(const Set<T>& set) {
+Set<T> Set<T>::operator|(const Set<T>& set) const {
     return *this + set;
 }
 
 template<typename T>
-Set<T> Set<T>::unite(const Set<T>& set) {
+Set<T> Set<T>::unite(const Set<T>& set) const {
     return *this | set;
 }
 
 template<typename T>
-Set<T> Set<T>::operator-(const Set<T>& set) {
+Set<T> Set<T>::operator-(const Set<T>& set) const {
     Set<T> result;
     for (auto i : *this) {
         result.add(i);
@@ -273,7 +283,7 @@ Set<T> Set<T>::operator-(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T> Set<T>::difference(const Set<T>& set) {
+Set<T> Set<T>::difference(const Set<T>& set) const {
     return *this - set;
 }
 
@@ -286,7 +296,7 @@ Set<T>& Set<T>::operator-=(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T> Set<T>::operator^(const Set<T>& set) {
+Set<T> Set<T>::operator^(const Set<T>& set) const {
     Set<T> result;
     for (auto i : *this) {
         if (!set.find(i)) {
@@ -302,7 +312,7 @@ Set<T> Set<T>::operator^(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T> Set<T>::symmetricDifference(const Set<T>& set) {
+Set<T> Set<T>::symmetricDifference(const Set<T>& set) const {
     return *this ^ set;
 }
 
