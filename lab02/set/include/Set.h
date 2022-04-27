@@ -12,16 +12,15 @@ TODO:
 Функции в нормальном порядке (с соответствием) - DONE
 Итератор сделать безопасно, с пробрасыванием исключения. - DONE
 Добавить конструктор для массива? - DONE 
-Для двух итераторов? - TODO?
 В константных функциях проставить const (например, операторы) - DONE
-Конструкторы сделать explicit - TODO?
+Конструкторы сделать explicit - DONE?
 Итератор наследовать от bidirectional_tag - DONE
 */
 template<typename T>
 class Set: public BaseCollection {
 public:
     Set() = default;
-    Set(const Set<T>& set);
+    explicit Set(const Set<T>& set);
     Set(Set<T>&& set) noexcept;
     explicit Set(const std::initializer_list<T> elements);
     Set(const T* array, size_t length);
@@ -68,11 +67,11 @@ public:
     Set<T>& operator-=(const Set<T>& set);
     Set<T>& operator^=(const Set<T>& set);
 
-    Set<T>& operator=(const Set<T> set);
+    Set<T>& operator=(const Set<T>& set);
     Set<T>& operator=(Set<T>&& set) noexcept;
 
-    bool operator==(const Set<T> set) const;
-    bool operator!=(const Set<T> set) const;
+    bool operator==(const Set<T>& set) const;
+    bool operator!=(const Set<T>& set) const;
 
 protected:
     bool add(const std::shared_ptr<SetNode<T>>& node);

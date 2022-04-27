@@ -342,7 +342,7 @@ Set<T>& Set<T>::operator^=(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T>& Set<T>::operator=(const Set<T> set) {
+Set<T>& Set<T>::operator=(const Set<T>& set) {
     if (&set == this) {
         return *this;
     }
@@ -373,7 +373,7 @@ Set<T>& Set<T>::operator=(Set<T>&& set) noexcept {
 }
 
 template<typename T>
-bool Set<T>::operator==(const Set<T> set) const {
+bool Set<T>::operator==(const Set<T>& set) const {
     if (size != set.size) {
         return false;
     }
@@ -386,7 +386,7 @@ bool Set<T>::operator==(const Set<T> set) const {
 }
 
 template<typename T>
-bool Set<T>::operator!=(const Set<T> set) const {
+bool Set<T>::operator!=(const Set<T>& set) const {
     return !(*this == set);
 }
 

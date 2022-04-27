@@ -8,7 +8,7 @@
 
 TEST(OperatorsTest, Assigment) {
     auto a = Set<int>{1, 2, 3, 4};
-    auto b = a;
+    auto b = Set<int>(a);
     EXPECT_EQ(b, a);
 }
 
