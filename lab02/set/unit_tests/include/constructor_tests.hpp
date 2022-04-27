@@ -10,11 +10,22 @@ TEST(ConstructorTest, Default) {
     EXPECT_EQ(a.isEmpty(), true);
 }
 
+TEST(ConstructorTest, FromInitializerList) {
+    Set<int> a{1, 2, 3, 4, 5};
+    EXPECT_EQ(a, (Set<int>{1, 2, 3, 4, 5}));
+}
+
+TEST(ConstructorTest, FromArray) {
+    int array[] = { 1, 2, 3, 4, 5 };
+    Set<int> a(array, 5);
+    EXPECT_EQ(a, (Set<int>{1, 2, 3, 4, 5}));
+}
+
 TEST(ConstructorTest, Copy) {
     Set<int> a{1, 2, 3, 4, 5};
     EXPECT_EQ(a, (Set<int>{1, 2, 3, 4, 5}));
 
-    auto b = a;
+    Set<int> b(a);
     EXPECT_EQ(a, b);
     EXPECT_EQ(b, (Set<int>{1, 2, 3, 4, 5}));
 }

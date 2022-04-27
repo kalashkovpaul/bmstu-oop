@@ -8,12 +8,14 @@
 
 #include <memory>
 /*
-TODO: функции в нормальном порядке (с соответствием)
-Итератор сделать безопасно, с пробрасыванием исключения.
-Добавить конструктор для массива? Для двух итераторов?
-В константных функциях проставить const (например, операторы)
-Конструкторы сделать explicit
-Итератор наследовать от bidirectional_tag
+TODO: 
+Функции в нормальном порядке (с соответствием) - DONE
+Итератор сделать безопасно, с пробрасыванием исключения. - DONE
+Добавить конструктор для массива? - DONE 
+Для двух итераторов? - TODO?
+В константных функциях проставить const (например, операторы) - DONE
+Конструкторы сделать explicit - TODO?
+Итератор наследовать от bidirectional_tag - DONE
 */
 template<typename T>
 class Set: public BaseCollection {
@@ -21,7 +23,8 @@ public:
     Set() = default;
     Set(const Set<T>& set);
     Set(Set<T>&& set) noexcept;
-    Set(const std::initializer_list<T> elements);
+    explicit Set(const std::initializer_list<T> elements);
+    Set(const T* array, size_t length);
 
     ~Set() override;
 
@@ -43,15 +46,15 @@ public:
     void add(const std::initializer_list<T> elements);
     void add(T* array, size_t length);
 
-    Set<T> update(const T& value);
-    Set<T> update(T&& value);
-    Set<T> update(const std::initializer_list<T> elements);
-    Set<T> update(T* array, size_t length);
+    Set<T> update(const T& value) const;
+    Set<T> update(T&& value) const;
+    Set<T> update(const std::initializer_list<T> elements) const;
+    Set<T> update(T* array, size_t length) const;
 
     Set<T> intersect(const Set<T>& set) const;
     Set<T> unite(const Set<T>& set) const;
     Set<T> difference(const Set<T>& set) const;
-    Set<T> symmetricDifference(const Set<T>& set)const ;
+    Set<T> symmetricDifference(const Set<T>& set)const;
 
     Set<T> operator&(const Set<T>& set) const;
     Set<T> operator|(const Set<T>& set) const;
@@ -59,7 +62,6 @@ public:
     Set<T> operator-(const Set<T>& set) const;
     Set<T> operator^(const Set<T>& set) const;
 
-    /* TODO: operator&= */
     Set<T>& operator&=(const Set<T>& set);
     Set<T>& operator|=(const Set<T>& set);
     Set<T>& operator+=(const Set<T>& set);

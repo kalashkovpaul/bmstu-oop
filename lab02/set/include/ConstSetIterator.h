@@ -7,7 +7,7 @@
 #include <iterator>
 
 template<typename T>
-class ConstSetIterator: public std::iterator<std::input_iterator_tag, T> {
+class ConstSetIterator: public std::iterator<std::bidirectional_iterator_tag, T> {
 public:
     ConstSetIterator();
     explicit ConstSetIterator(const std::shared_ptr<SetNode<T>>& node);
@@ -39,6 +39,7 @@ public:
 protected:
     virtual SetNode<T>& getCurrent();
     virtual SetNode<T>& getCurrent() const;
+    void checkExpired(const std::string function) const;
 
 private:
     std::weak_ptr<SetNode<T>> current;

@@ -22,8 +22,10 @@ TEST(EqualTest, EmptyNonEqual) {
 }
 
 TEST(EqualTest, EmptyNotEqual) {
+    Set<int> a{1};
     Set<int> b;
-    EXPECT_EQ(Set<int>{1} == b, false);
+    bool equal = (a == b);
+    EXPECT_EQ(equal, false);
 }
 
 TEST(EqualTest, NonEmptyNonEqual) {

@@ -43,6 +43,21 @@ Set<T>::Set(const std::initializer_list<T> elements): Set() {
 }
 
 template<typename T>
+Set<T>::Set(const T* array, size_t length) {
+    for (size_t i = 0; i < length; i++) {
+        std::shared_ptr<SetNode<T>> tmpNode = nullptr;
+        try {
+            tmpNode = std::shared_ptr<SetNode<T>>(new SetNode<T>);
+        } catch (std::bad_alloc &error) {
+            auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+            throw BadAllocError(ctime(&t), __FILE__, typeid(Set).name(), __FUNCTION__);
+        }
+        tmpNode->setData(array[i]);
+        add(tmpNode);
+    } 
+}
+
+template<typename T>
 Set<T>::~Set() {
     this->clear();
 }
@@ -173,28 +188,28 @@ void Set<T>::add(const std::initializer_list<T> elements) {
 }
 
 template<typename T>
-void Set<T>::add(T* array, size_t length) noexcept(false) {
+void Set<T>::add(T* array, size_t length) {
     for (size_t i = 0; i < length; ++i) {
         add(array[i]);
     }
 }
 
 template<typename T>
-Set<T> Set<T>::update(const T& value) {
+Set<T> Set<T>::update(const T& value) const {
     Set<T> result(*this);
     result.add(value);
     return result;
 }
 
 template<typename T>
-Set<T> Set<T>::update(T&& value) {
+Set<T> Set<T>::update(T&& value) const {
     Set<T> result(*this);
     result.add(value);
     return result;
 }
 
 template<typename T>
-Set<T> Set<T>::update(const std::initializer_list<T> elements) {
+Set<T> Set<T>::update(const std::initializer_list<T> elements) const {
     Set<T> result(*this);
     for (auto& el : elements) {
         result.add(el);
@@ -203,7 +218,7 @@ Set<T> Set<T>::update(const std::initializer_list<T> elements) {
 }
 
 template<typename T>
-Set<T> Set<T>::update(T* array, size_t length) {
+Set<T> Set<T>::update(T* array, size_t length) const {
     Set<T> result(*this);
     for (size_t i = 0; i < length; ++i) {
         result.add(array[i]);
@@ -327,7 +342,7 @@ Set<T>& Set<T>::operator^=(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T>& Set<T>::operator=(const Set<T> set) noexcept(false) {
+Set<T>& Set<T>::operator=(const Set<T> set) {
     if (&set == this) {
         return *this;
     }
