@@ -19,6 +19,7 @@ ConstSetIterator<T>::ConstSetIterator(const std::shared_ptr<SetNode<T>>& node) {
 
 template<typename T>
 ConstSetIterator<T>::ConstSetIterator(const ConstSetIterator<T>& iterator) {
+    checkExpired(__FUNCTION__);
     this->current = iterator.current.lock();
 }
 

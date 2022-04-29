@@ -9,14 +9,8 @@
 
 TEST(EraseTest, Empty) {
     auto b = Set<int>{};
-    b.erase(b.find(5));
+    b.erase(5);
     EXPECT_EQ(b.isEmpty(), true);
-}
-
-TEST(EraseTest, NonEmptyIncorrect) {
-    auto b = Set<int>{1, 2, 3, 4, 5, 9, 12, 21};
-
-    EXPECT_THROW(b.erase(b.find(10)), IteratorError);
 }
 
 TEST(EraseTest, NonEmptyIncorrectConst) {
@@ -27,7 +21,7 @@ TEST(EraseTest, NonEmptyIncorrectConst) {
 
 TEST(EraseTest, NonEmptyCorrect) {
     auto b = Set<int>{1, 2, 3, 4, 5, 9, 12, 21};
-    b.erase(b.find(5));
+    b.erase(5);
     EXPECT_EQ(b, (Set<int>{1, 2, 3, 4, 9, 12, 21}));
 }
 

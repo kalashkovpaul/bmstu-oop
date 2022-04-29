@@ -89,26 +89,13 @@ template<typename T>
 void Set<T>::erase(const T& value) {
     auto t = find(value);
     if (t) {
-        erase(t);
+        auto ptr = std::make_shared<SetNode<T>>(t.getCurrent());
+        if (head->getData() == ptr->getData()) {
+            head = ptr->getNext();
+        }
+        ptr->exclude();
+        size--;
     }
-}
-
-template<typename T>
-void Set<T>::erase(const ConstSetIterator<T>& iterator) {
-    if (!size) {
-        return;
-    }
-    if (!iterator) {
-        auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-        throw IteratorError(ctime(&t), __FILE__, typeid(Set).name(), __FUNCTION__);
-    }
-
-    auto t = std::make_shared<SetNode<T>>(iterator.getCurrent());
-    if (head->getData() == t->getData()) {
-        head = t->getNext();
-    }
-    t->exclude();
-    size--;
 }
 
 template<typename T>
@@ -227,6 +214,26 @@ Set<T> Set<T>::update(T* array, size_t length) const {
 }
 
 template<typename T>
+Set<T> Set<T>::intersect(const Set<T>& set) const {
+    return *this & set;
+}
+
+template<typename T>
+Set<T> Set<T>::unite(const Set<T>& set) const {
+    return *this | set;
+}
+
+template<typename T>
+Set<T> Set<T>::difference(const Set<T>& set) const {
+    return *this - set;
+}
+
+template<typename T>
+Set<T> Set<T>::symmetricDifference(const Set<T>& set) const {
+    return *this ^ set;
+}
+
+template<typename T>
 Set<T> Set<T>::operator&(const Set<T>& set) const {
     Set<T> result;
     for (auto i : *this) {
@@ -238,34 +245,8 @@ Set<T> Set<T>::operator&(const Set<T>& set) const {
 }
 
 template<typename T>
-Set<T>& Set<T>::operator&=(const Set<T>& set) {
-    for (auto i : *this) {
-        if (find(i)) {
-            add(i);
-        }
-    }
-    return *this;
-}
-
-template<typename T>
-Set<T> Set<T>::intersect(const Set<T>& set) const {
-    return *this & set;
-}
-
-template<typename T>
-Set<T>& Set<T>::operator+=(const Set<T>& set) {
-    for (auto i : set) {
-        if (!find(i)) {
-            add(i);
-        }
-    }
-    return *this;
-}
-
-template<typename T>
-Set<T>& Set<T>::operator|=(const Set<T>& set) {
-    *this += set;
-    return *this;
+Set<T> Set<T>::operator|(const Set<T>& set) const {
+    return *this + set;
 }
 
 template<typename T>
@@ -275,15 +256,7 @@ Set<T> Set<T>::operator+(const Set<T>& set) const {
     return result;
 }
 
-template<typename T>
-Set<T> Set<T>::operator|(const Set<T>& set) const {
-    return *this + set;
-}
 
-template<typename T>
-Set<T> Set<T>::unite(const Set<T>& set) const {
-    return *this | set;
-}
 
 template<typename T>
 Set<T> Set<T>::operator-(const Set<T>& set) const {
@@ -295,19 +268,6 @@ Set<T> Set<T>::operator-(const Set<T>& set) const {
         result.erase(i);
     }
     return result;
-}
-
-template<typename T>
-Set<T> Set<T>::difference(const Set<T>& set) const {
-    return *this - set;
-}
-
-template<typename T>
-Set<T>& Set<T>::operator-=(const Set<T>& set) {
-    for (auto i = set.begin(); i != set.end(); ++i) {
-        erase(*i);
-    }
-    return *this;
 }
 
 template<typename T>
@@ -327,9 +287,43 @@ Set<T> Set<T>::operator^(const Set<T>& set) const {
 }
 
 template<typename T>
-Set<T> Set<T>::symmetricDifference(const Set<T>& set) const {
-    return *this ^ set;
+Set<T>& Set<T>::operator&=(const Set<T>& set) {
+    for (auto i : *this) {
+        if (find(i)) {
+            add(i);
+        }
+    }
+    return *this;
 }
+
+template<typename T>
+Set<T>& Set<T>::operator|=(const Set<T>& set) {
+    *this += set;
+    return *this;
+}
+
+template<typename T>
+Set<T>& Set<T>::operator+=(const Set<T>& set) {
+    for (auto i : set) {
+        if (!find(i)) {
+            add(i);
+        }
+    }
+    return *this;
+}
+
+
+
+
+template<typename T>
+Set<T>& Set<T>::operator-=(const Set<T>& set) {
+    for (auto i = set.begin(); i != set.end(); ++i) {
+        erase(*i);
+    }
+    return *this;
+}
+
+
 
 template<typename T>
 Set<T>& Set<T>::operator^=(const Set<T>& set) {

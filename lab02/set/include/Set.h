@@ -33,7 +33,6 @@ public:
     size_t capacity() const;
     
     void erase(const T& value);
-    void erase(const ConstSetIterator<T>& iterator);
 
     void clear() override;
 

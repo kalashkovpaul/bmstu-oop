@@ -52,5 +52,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "gitlens.heatmap.toggleMode": "window"
 }
