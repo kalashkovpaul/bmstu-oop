@@ -219,8 +219,18 @@ Set<T> Set<T>::intersect(const Set<T>& set) const {
 }
 
 template<typename T>
+Set<T> Set<T>::intersect(const std::initializer_list<T> elements) const {
+    return *this & Set<T>(elements);
+}
+
+template<typename T>
 Set<T> Set<T>::unite(const Set<T>& set) const {
     return *this | set;
+}
+
+template<typename T>
+Set<T> Set<T>::unite(const std::initializer_list<T> elements) const {
+    return *this | Set<T>(elements);
 }
 
 template<typename T>
@@ -229,8 +239,18 @@ Set<T> Set<T>::difference(const Set<T>& set) const {
 }
 
 template<typename T>
+Set<T> Set<T>::difference(const std::initializer_list<T> elements) const {
+    return *this - Set<T>(elements);
+}
+
+template<typename T>
 Set<T> Set<T>::symmetricDifference(const Set<T>& set) const {
     return *this ^ set;
+}
+
+template<typename T>
+Set<T> Set<T>::symmetricDifference(const std::initializer_list<T> elements) const {
+    return *this ^ Set<T>(elements);
 }
 
 template<typename T>
@@ -245,18 +265,9 @@ Set<T> Set<T>::operator&(const Set<T>& set) const {
 }
 
 template<typename T>
-Set<T> Set<T>::operator|(const Set<T>& set) const {
-    return *this + set;
+Set<T> Set<T>::operator&(const std::initializer_list<T> elements) const {
+    return *this & Set<T>(elements);
 }
-
-template<typename T>
-Set<T> Set<T>::operator+(const Set<T>& set) const {
-    Set<T> result(*this);
-    result += set;
-    return result;
-}
-
-
 
 template<typename T>
 Set<T> Set<T>::operator-(const Set<T>& set) const {
@@ -268,6 +279,11 @@ Set<T> Set<T>::operator-(const Set<T>& set) const {
         result.erase(i);
     }
     return result;
+}
+
+template<typename T>
+Set<T> Set<T>::operator-(const std::initializer_list<T> elements) const {
+    return *this - Set<T>(elements);
 }
 
 template<typename T>
@@ -287,6 +303,11 @@ Set<T> Set<T>::operator^(const Set<T>& set) const {
 }
 
 template<typename T>
+Set<T> Set<T>::operator^(const std::initializer_list<T> elements) const {
+    return *this ^ Set<T>(elements);
+}
+
+template<typename T>
 Set<T>& Set<T>::operator&=(const Set<T>& set) {
     for (auto i : *this) {
         if (find(i)) {
@@ -297,9 +318,20 @@ Set<T>& Set<T>::operator&=(const Set<T>& set) {
 }
 
 template<typename T>
-Set<T>& Set<T>::operator|=(const Set<T>& set) {
-    *this += set;
-    return *this;
+Set<T>& Set<T>::operator&=(const std::initializer_list<T> elements) {
+    return *this &= Set<T>(elements);
+}
+
+template<typename T>
+Set<T> Set<T>::operator+(const Set<T>& set) const {
+    Set<T> result(*this);
+    result += set;
+    return result;
+}
+
+template<typename T>
+Set<T> Set<T>::operator+(const std::initializer_list<T> elements) const {
+    return *this + Set<T>(elements);
 }
 
 template<typename T>
@@ -312,8 +344,48 @@ Set<T>& Set<T>::operator+=(const Set<T>& set) {
     return *this;
 }
 
+template<typename T>
+Set<T>& Set<T>::operator+=(const std::initializer_list<T> elements) {
+    return *this += Set<T>(elements);
+}
 
+template<typename T>
+Set<T> Set<T>::operator|(const Set<T>& set) const {
+    Set<T> result(*this);
+    result += set;
+    return result;
+}
 
+template<typename T>
+Set<T> Set<T>::operator|(const std::initializer_list<T> elements) const {
+    return *this + Set<T>(elements);
+}
+
+template<typename T>
+Set<T>& Set<T>::operator|=(const Set<T>& set) {
+    *this += set;
+    return *this;
+}
+
+template<typename T>
+Set<T>& Set<T>::operator|=(const std::initializer_list<T> elements) {
+    return *this |= Set<T>(elements);
+}
+
+template<typename T>
+Set<T>& Set<T>::operator+=(const Set<T>& set) {
+    for (auto i : set) {
+        if (!find(i)) {
+            add(i);
+        }
+    }
+    return *this;
+}
+
+template<typename T>
+Set<T>& Set<T>::operator+=(const std::initializer_list<T> elements) {
+    return *this += Set<T>(elements);
+}
 
 template<typename T>
 Set<T>& Set<T>::operator-=(const Set<T>& set) {
@@ -323,7 +395,10 @@ Set<T>& Set<T>::operator-=(const Set<T>& set) {
     return *this;
 }
 
-
+template<typename T>
+Set<T>& Set<T>::operator-=(const std::initializer_list<T> elements) {
+    return *this -= Set<T>(elements);
+}
 
 template<typename T>
 Set<T>& Set<T>::operator^=(const Set<T>& set) {
@@ -333,6 +408,26 @@ Set<T>& Set<T>::operator^=(const Set<T>& set) {
         add(i);
     }
     return *this;
+}
+
+template<typename T>
+Set<T>& Set<T>::assign(const Set<T>& set) {
+    return (*this = set);
+}
+
+template<typename T>
+Set<T>& Set<T>::assign(const std::initializer_list<T> elements) {
+    return (*this = Set<T>(elements));
+}
+
+template<typename T>
+Set<T>& Set<T>::assign(const std::initializer_list<T> elements) {
+    return (*this = Set<T>(elements));
+}
+
+template<typename T>
+Set<T>& Set<T>::operator=(const std::initializer_list<T> elements) {
+    return (*this = Set<T>(elements));
 }
 
 template<typename T>
@@ -359,11 +454,80 @@ Set<T>& Set<T>::operator=(const Set<T>& set) {
 }
 
 template<typename T>
+Set<T>& Set<T>::assign(Set<T>&& set) noexcept {
+    return (*this = set);
+}
+
+template<typename T>
 Set<T>& Set<T>::operator=(Set<T>&& set) noexcept {
     size = set.size;
     head = set.head;
     tail = set.tail;
     return *this;
+}
+
+template<typename T>
+bool Set<T>::less(const Set<T>& set) const {
+    return (*this < set);
+}
+
+template<typename T>
+bool Set<T>::less(const std::initializer_list<T> elements) const {
+    return (*this < Set<T>(elements));
+}
+
+template<typename T>
+bool Set<T>::operator<(const std::initializer_list<T> elements) const {
+    return (*this < Set<T>(elements));
+}
+
+template<typename T>
+bool Set<T>::operator<(const Set<T>& set) const {
+    if (size >= set.size) {
+        return false;
+    }
+    for (auto i : *this) {
+        if (!set.find(i))
+            return false;
+    }
+    return true;
+}
+
+template<typename T>
+bool Set<T>::bigger(const Set<T>& set) const {
+    return (*this > set);
+}
+
+template<typename T>
+bool Set<T>::bigger(const std::initializer_list<T> elements) const {
+    return (*this > Set<T>(elements));
+}
+
+template<typename T>
+bool Set<T>::operator>(const std::initializer_list<T> elements) const {
+    return *this > Set<T>(elements);
+}
+
+template<typename T>
+bool Set<T>::operator>(const Set<T>& set) const {
+    if (size <= set.size) {
+        return false;
+    }
+    for (auto i : set) {
+        if (!find(i))
+            return false;
+    }
+    return true;
+}
+
+template<typename T>
+bool Set<T>::equal(const Set<T>& set) const {
+    return (*this == set);
+}
+
+template<typename T>
+bool Set<T>::equal(const std::initializer_list<T> elements) const {
+    return (*this == Set<T>(elements));
 }
 
 template<typename T>
@@ -380,8 +544,28 @@ bool Set<T>::operator==(const Set<T>& set) const {
 }
 
 template<typename T>
+bool Set<T>::operator==(const std::initializer_list<T> elements) const {
+    return *this == Set<T>(elements);
+}
+
+template<typename T>
+bool Set<T>::notEqual(const Set<T>& set) const {
+    return (*this != set);
+}
+
+template<typename T>
+bool Set<T>::notEqual(const std::initializer_list<T> elements) const {
+    return (*this != Set<T>);
+}
+
+template<typename T>
 bool Set<T>::operator!=(const Set<T>& set) const {
     return !(*this == set);
+}
+
+template<typename T>
+bool Set<T>::operator!=(const std::initializer_list<T> elements) const {
+    return !(*this == elements);
 }
 
 template<typename T>

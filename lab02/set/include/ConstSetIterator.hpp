@@ -130,7 +130,7 @@ bool ConstSetIterator<T>::operator==(const ConstSetIterator<T>& iterator) const 
 
 template<typename T>
 void ConstSetIterator<T>::checkExpired(const std::string function) const {
-    if (current.lock() && current.expired()) {
+    if (current.expired() && current.lock()) {
         auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
         throw new IteratorError(ctime(&t), __FILE__, typeid(ConstSetIterator).name(), function);
     }
