@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/media/paul/kalashkov/university/forthTerm/oop/repo/lab03'
+make: Leaving directory '/media/paul/kalashkov/university/forthTerm/oop/repo/lab03'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
