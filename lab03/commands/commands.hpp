@@ -1,198 +1,214 @@
-#include "commands.h"
+#ifndef COMMANDS_H_
+
+#define COMMANDS_H_
+
+#include <string>
+#include <memory>
+
+#include "math3D/Point3D/Point3D.h"
+#include "managers/BaseManager.hpp"
+#include "managers/UploadManager.hpp"
+#include "gui/drawers/drawers.hpp"
+
+class Command {
+public:
+    virtual Command() = default;
+    virtual Command(const Command&) = delete;
+    virtual ~Command() = default;
+
+    virtual void execute() = 0;
+};
 
 namespace commands {
 
-template <typename Receiver>
-UploadView<Receiver>::UploadView(const Action action, const std::string filename): 
-    act(action),
-    this.filename(filename) {}
+class UploadView: public Command{
+public:
+    explicit UploadView(const std::string filename);
+    UploadView(const UploadView&) = delete;
+    ~UploadView() = default;
 
-template <typename Receiver>
-void UploadView<Receiver>::execute(const std::shared_ptr<Receiver> r) {
-    ((*r).*act)(filename);
-}
+    virtual void execute() override;
+private:
+    const std::string filename;
+};
 
-template <typename Receiver>
-DeleteView<Receiver>::DeleteView(const Action action, const std::size_t viewIndex): 
-    act(action),
-    this.viewIndex(viewIndex) {}
+class DeleteView: public Command {
+public:
+    explicit DeleteView(const std::size_t viewIndex);
+    DeleteView(const DeleteView&) = delete;
+    ~DeleteView() = default;
 
-template <typename Receiver>
-void DeleteView<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(viewIndex);
-}
+    virtual void execute() override;
+    
+private:
+    const std::size_t viewIndex;
+};
 
-template <typename Receiver>
-AddModel<Receiver>::AddModel(const Action action, const std::size_t viewIndex): 
-    act(action),
-    this.viewIndex(viewIndex) {}
+class AddModel: public Command {
+public:
+    explicit AddModel(const std::size_t viewIndex);
+    AddModel(const AddModel&) = delete;
+    ~AddModel() = default;
 
-template <typename Receiver>
-void AddModel<Receiver>::execute(const std::shared_ptr<Receiver> r) {
-    ((*r).*act)(viewIndex);
-}
+    virtual void execute() override;
 
-template <typename Receiver>
-DeleteModel<Receiver>::DeleteModel(const Action action, const std::size_t modelIndex): 
-    act(action),
-    this.modelIndex(modelIndex) {}
+private:
+    const std::size_t viewIndex;
+};
 
-template <typename Receiver>
-void DeleteModel<Receiver>::execute(const std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex);
-}
+class DeleteModel: public Command {
+public:
+    explicit DeleteModel(const std::size_t modelIndex);
+    DeleteModel(const DeleteModel&) = delete;
+    ~DeleteModel() = default;
 
-template <typename Receiver>
-AddCamera<Receiver>::AddCamera(Action action): 
-    act(action) {}
+    virtual void execute() override;
 
-template <typename Receiver>
-void AddCamera<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)();
-}
+private:
+    const std::size_t modelIndex;
+};
 
-template <typename Receiver>
-DeleteCamera<Receiver>::DeleteCamera(const Action action, const std::size_t cameraIndex): 
-    act(action),
-    this.cameraIndex(cameraIndex) {}
+class AddCamera: public Command {
+public:
+    explicit AddCamera(const Action action);
+    AddCamera(const AddCamera&) = delete;
+    ~AddCamera() = default;
 
-template <typename Receiver>
-void DeleteCamera<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(cameraIndex);
-}
+    virtual void execute() override;
+};
 
-template <typename Receiver>
-TranslateModel<Receiver>::TranslateModel(const Action action, \
-    const std::size_t modelIndex, const Point3D<double>& point): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.point(point) {}
+class DeleteCamera: public Command {
+public:
+    explicit DeleteCamera(const std::size_t cameraIndex);
+    DeleteCamera(const DeleteCamera&) = delete;
+    ~DeleteCamera() = default;
 
-template <typename Receiver>
-void TranslateModel<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, point);
-}
+    virtual void execute() override;
 
-template <typename Receiver>
-RotateModelOX<Receiver>::RotateModelOX(const Action action, \
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+private:
+    const std::size_t cameraIndex;
+};
 
-template <typename Receiver>
-void RotateModelOX<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, angle);
-}
+class TranslateModel: public Command {
+public:
+    explicit TranslateModel(const std::size_t modelIndex, const Point3D<double>& point);
+    TranslateModel(const TranslateModel&) = delete;
+    ~TranslateModel() = default;
 
+    virtual void execute() override;
 
-template <typename Receiver>
-RotateModelOX<Receiver>::RotateModelOX(const Action action, \
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+private:
+    const std::size_t modelIndex;
+    const Point3D<double> point;
+};
 
-template <typename Receiver>
-void RotateModelOX<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, angle);
-}
+class RotateModelOX: public Command {
+public:
+    explicit RotateModelOX(const std::size_t modelIndex, const double angle);
+    RotateModelOX(const RotateModelOX&) = delete;
+    ~RotateModelOX() = default;
 
-template <typename Receiver>
-RotateModelOY<Receiver>::RotateModelOY(const Action action, \
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+    virtual void execute() override;
 
-template <typename Receiver>
-void RotateModelOY<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, angle);
-}
+private:
+    const std::size_t modelIndex;
+    const double angle;
+};
 
-template <typename Receiver>
-RotateModelOZ<Receiver>::RotateModelOZ(const Action action, \
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+class RotateModelOY: public Command {
+public:
+    explicit RotateModelOY(const std::size_t modelIndex, const double angle);
+    RotateModelOY(const RotateModelOY&) = delete;
+    ~RotateModelOY() = default;
 
-template <typename Receiver>
-void RotateModelOZ<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, angle);
-}
+    virtual void execute() override;
 
-template <typename Receiver>
-RotateModelOZ<Receiver>::RotateModelOZ(const Action action, \
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+private:
+    const std::size_t modelIndex;
+    const double angle;
+};
 
-template <typename Receiver>
-void RotateModelOZ<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, angle);
-}
+class RotateModelOZ: public Command {
+public:
+    explicit RotateModelOZ(const std::size_t modelIndex, const double angle);
+    RotateModelOZ(const RotateModelOZ&) = delete;
+    ~RotateModelOZ() = default;
 
-template <typename Receiver>
-ScaleModel<Receiver>::ScaleModel(const Action action, \
-    const std::size_t modelIndex, const double scaleFactor): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.scaleFactor(scaleFactor) {}
+    virtual void execute() override;
+    virtual std::string getType() override;
 
-template <typename Receiver>
-void ScaleModel<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(modelIndex, scaleFactor);
-}
+private:
+    const std::size_t modelIndex;
+    const double angle;
+};
 
-template <typename Receiver>
-Draw<Receiver>::Draw(const Action action, \
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.drawer(drawer) {}
+class ScaleModel: public Command {
+public:
+    explicit ScaleModel(const std::size_t modelIndex, const double scaleFactor);
+    ScaleModel(const ScaleModel&) = delete;
+    ~ScaleModel() = default;
 
-template <typename Receiver>
-void Draw<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(cameraIndex, drawer);
-}
+    virtual void execute() override;
 
-template <typename Receiver>
-RollLook<Receiver>::RollLook(const Action action, \
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+private:
+    const std::size_t modelIndex;
+    const double scaleFactor;
+};
 
-template <typename Receiver>
-void RollLook<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(cameraIndex, angle);
-}
+class Draw: public Command {
+public:
+    explicit Draw(const std::size_t cameraIndex, const Drawer& drawer);
+    Draw(const Draw&) = delete;
+    ~Draw() = default;
 
-template <typename Receiver>
-RollRight<Receiver>::RollRight(const Action action, \
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+    virtual void execute() override;
+    virtual std::string getType() override;
 
-template <typename Receiver>
-void RollRight<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(cameraIndex, angle);
-}
+private:
+    const std::size_t cameraIndex;
+    const Drawer& drawer;
+};
 
-template <typename Receiver>
-RollUp<Receiver>::RollUp(const Action action, \
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+class RollLook: public Command {
+    using Action = void (CameraManager::*)();
+public:
+    explicit RollLook(const std::size_t cameraIndex, const double angle);
+    RollLook(const RollLook&) = delete;
+    ~Draw() = default;
 
-template <typename Receiver>
-void RollUp<Receiver>::execute(std::shared_ptr<Receiver> r) {
-    ((*r).*act)(cameraIndex, angle);
-}
+    virtual void execute() override;
+
+private:
+    const std::size_t cameraIndex;
+    const angle;
+};
+
+class RollRight: public Command {
+public:
+    explicit RollRight(const std::size_t cameraIndex, const double angle);
+    RollRight(const RollRight&) = delete;
+    ~Draw() = default;
+
+    virtual void execute() override;
+
+private:
+    const std::size_t cameraIndex;
+    const angle;
+};
+
+class RollUp: public Command {
+public:
+    explicit RollUp(const std::size_t cameraIndex, const double angle);
+    RollUp(const RollUp&) = delete;
+    ~Draw() = default;
+
+    virtual void execute() override;
+
+private:
+    const std::size_t cameraIndex;
+    const angle;
+};
 
 }
 
+#endif
