@@ -1,0 +1,36 @@
+#include "Model.hpp"
+
+Model::Model(std::string name, std::vector<Point3D<double>> vertices, std::vector<Edge> edges):
+    name(name),
+    vertices(vertices),
+    edges(edges) {}
+
+Model::Model(const Model& other):
+    VisibleObject(),
+    name(other.name),
+    vertices(other.vertices),
+    edges(other.edges) {}
+
+Model::Model(Model&& other) noexcept:
+    name(std::move(other.name)),
+    vertices(std::move(other.vertices)),
+    edges(std::move(other.edges)) {}
+
+Model& Model::operator=(const Model& other) {
+    if (this != &other) {
+        name = other.name;
+        vertices = other.vertices;
+        edges = other.edges;
+    }
+    return *this;
+}
+
+Model& Model::operator=(Model&& other) noexcept {
+    if (this != &other) {
+        name = std::move(other.name);
+        vertices = std::move(other.vertices);
+        edges = std::move(other.edges);
+        other.~Model();
+    }
+    return *this;
+}
