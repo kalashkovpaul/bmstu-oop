@@ -4,6 +4,8 @@
 
 #include "Scene.hpp"
 #include "sceneExceptions.hpp"
+#include "Model.hpp"
+#include "Camera.hpp"
 
 class CompositeObject: public Scene {
     CompositeObject(Scene* camera);

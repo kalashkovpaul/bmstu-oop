@@ -6,7 +6,7 @@
 #include "Point3D.h"
 #include "Matrix4x4.h"
 
-class Camera: InvisibleObject {
+class Camera: public InvisibleObject {
 public:
     Camera();
     Camera(const Point3D<double>&, const Point3D<double>&, double, double, double);

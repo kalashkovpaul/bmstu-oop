@@ -56,7 +56,7 @@ Matrix4x4<T> Matrix4x4<T>::operator*(const T& value) const {
 
 template <typename T>
 Point3D<T> Matrix4x4<T>::operator*(const Point3D<T>& point) const {
-  Vector<4, T> vector = point.ToVector4D();
+  Vector<4, T> vector = point.toVector4D();
   Vector<4, T> result = {0, 0, 0, 0};
 
   for (std::size_t i = 0; i < 4; ++i)

@@ -5,6 +5,7 @@
 #include "Scene.hpp"
 
 class InvisibleObject: public Scene {
+public:
     explicit InvisibleObject() = default;
     InvisibleObject(const InvisibleObject&) = delete;
     ~InvisibleObject() override = default;

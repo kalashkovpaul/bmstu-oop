@@ -1,4 +1,4 @@
-#ifnef MODEL_HPP_
+#ifndef MODEL_HPP_
 
 #define MODEL_HPP_
 
@@ -20,7 +20,7 @@ public:
     Model& operator=(const Model&);
     Model& operator=(Model&&) noexcept;
 
-    // friend class Transformation; TODO
+    friend class Transformation;
     // friend class DrawManager; TODO
 
 private:

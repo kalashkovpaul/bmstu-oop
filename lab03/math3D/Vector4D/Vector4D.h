@@ -20,13 +20,13 @@ class Vector4D : public Vector<4, T> {
   Vector4D& operator=(const Vector<4, T>&);
   Vector4D& operator=(Vector4D&&) noexcept;
 
-  T Length();
-  void Normalize();
+  T length();
+  void normalize();
 
-  static T Dot(const Vector4D&, const Vector4D&);
-  static Vector4D Cross(const Vector4D&, const Vector4D&);
+  static T dot(const Vector4D&, const Vector4D&);
+  static Vector4D cross(const Vector4D&, const Vector4D&);
 };
 
 #include "Vector4D.hpp"
 
-#endif  // LAB04_MATH3D_VECTOR4D_HPP_
+#endif
