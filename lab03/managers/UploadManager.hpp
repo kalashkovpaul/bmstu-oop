@@ -2,13 +2,14 @@
 
 #define UPLOAD_MANAGER_HPP_
 
-#include "BaseManager.hpp"
+#include "uploaders/Uploader.hpp"
 
-class UploadManager: BaseManager {
-    std::string getType() override;
+class UploadManager {
+public:
+    static Model uploadModel(BaseUploader& uploader);
 
-    void run(std::string filename);
-    
+private:
+    UploadManager() = default;    
 };
 
 #endif

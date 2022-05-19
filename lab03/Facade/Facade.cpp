@@ -1,5 +1,5 @@
 #include "Facade.hpp"
 
-void Facade::ExecuteCommand(Command& command) {
+void Facade::executeCommand(Command& command) {
   command.execute();
 }

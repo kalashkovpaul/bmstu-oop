@@ -2,9 +2,10 @@
 
 #define CAMERA_HPP_
 
-#include "InvisibleObject.hpp"
-#include "Point3D.h"
-#include "Matrix4x4.h"
+#include "objects/InvisibleObject.hpp"
+#include "math3D/Point3D/Point3D.h"
+#include "math3D/Matrix4x4/Matrix4x4.h"
+#include "transformations/dimensionalTransformations.hpp"
 
 class Camera: public InvisibleObject {
 public:

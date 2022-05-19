@@ -5,15 +5,17 @@
 #include <string>
 #include <memory>
 
+#include <iostream> // TODO Shouldn't be here
+
 #include "math3D/Point3D/Point3D.h"
 #include "managers/BaseManager.hpp"
 #include "managers/UploadManager.hpp"
-#include "gui/drawers/drawers.hpp"
+#include "gui/drawers.hpp"
 
 class Command {
 public:
-    virtual Command() = default;
-    virtual Command(const Command&) = delete;
+    Command() = default;
+    Command(const Command&) = delete;
     virtual ~Command() = default;
 
     virtual void execute() = 0;
@@ -70,7 +72,7 @@ private:
 
 class AddCamera: public Command {
 public:
-    explicit AddCamera(const Action action);
+    explicit AddCamera();
     AddCamera(const AddCamera&) = delete;
     ~AddCamera() = default;
 
@@ -135,7 +137,6 @@ public:
     ~RotateModelOZ() = default;
 
     virtual void execute() override;
-    virtual std::string getType() override;
 
 private:
     const std::size_t modelIndex;
@@ -162,7 +163,6 @@ public:
     ~Draw() = default;
 
     virtual void execute() override;
-    virtual std::string getType() override;
 
 private:
     const std::size_t cameraIndex;
@@ -170,43 +170,42 @@ private:
 };
 
 class RollLook: public Command {
-    using Action = void (CameraManager::*)();
 public:
     explicit RollLook(const std::size_t cameraIndex, const double angle);
     RollLook(const RollLook&) = delete;
-    ~Draw() = default;
+    ~RollLook() = default;
 
     virtual void execute() override;
 
 private:
     const std::size_t cameraIndex;
-    const angle;
+    const double angle;
 };
 
 class RollRight: public Command {
 public:
     explicit RollRight(const std::size_t cameraIndex, const double angle);
     RollRight(const RollRight&) = delete;
-    ~Draw() = default;
+    ~RollRight() = default;
 
     virtual void execute() override;
 
 private:
     const std::size_t cameraIndex;
-    const angle;
+    const double angle;
 };
 
 class RollUp: public Command {
 public:
     explicit RollUp(const std::size_t cameraIndex, const double angle);
     RollUp(const RollUp&) = delete;
-    ~Draw() = default;
+    ~RollUp() = default;
 
     virtual void execute() override;
 
 private:
     const std::size_t cameraIndex;
-    const angle;
+    const double angle;
 };
 
 }

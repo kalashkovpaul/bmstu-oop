@@ -2,9 +2,9 @@
 
 #define VISIBLE_OBJECT_HPP_
 
-#include "Scene.hpp"
+#include "SceneObject.hpp"
 
-class VisibleObject: public Scene {
+class VisibleObject: public SceneObject {
 public:
     explicit VisibleObject() = default;
     VisibleObject(const VisibleObject&) = delete;

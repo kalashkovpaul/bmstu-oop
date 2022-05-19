@@ -1,4 +1,5 @@
 #include "Model.hpp"
+#include "visitors/DrawVisitor.hpp"
 
 Model::Model(std::string name, std::vector<Point3D<double>> vertices, std::vector<Edge> edges):
     name(name),
@@ -33,4 +34,8 @@ Model& Model::operator=(Model&& other) noexcept {
         other.~Model();
     }
     return *this;
+}
+
+void Model::acceptDrawVisitor(Visitor* visitor, BaseDrawer& drawer, Camera* camera) {
+    visitor->visit(this, drawer, camera);
 }

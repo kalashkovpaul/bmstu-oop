@@ -45,41 +45,41 @@ Matrix4x4<double> Camera::getViewMatrix() {
 
 void Camera::rotateUpDownSphere(double angle) {
     Point3D<double> point(up[0], up[1], up[2]);
-    const Matrix4x4<double> transform = dimensionalTransformations::rotation(point, angle);
+    const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     right = transform * right;
     look = transform * look;
     point = Point3D<double>(target[0], target[1], target[2]);
-    const Matrix4x4<double> translation = dimensionalTransformations::translation(point);
+    const Matrix4x4<double> translation = dimensionalTransformations::Translation(point);
     position = position * (translation * -1.0) * transform * translation;
 }
 
 void Camera::rotateLeftRightSphere(double angle) {
     Point3D<double> point(right[0], right[1], right[2]);
-    const Matrix4x4<double> transform = dimensionalTransformations::rotation(point, angle);
+    const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     up = transform * up;
     look = transform * look;
     point = Point3D<double>(target[0], target[1], target[2]);
-    const Matrix4x4<double> translation = dimensionalTransformations::translation(point);
+    const Matrix4x4<double> translation = dimensionalTransformations::Translation(point);
     position = position * (translation * -1.0) * transform * translation;
 }
 
 void Camera::rollLook(double angle) {
     Point3D<double> point(look[0], look[1], look[2]);
-    const Matrix4x4<double> transform = dimensionalTransformations::rotation(point, angle);
+    const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     right = transform * right;
     up = transform * up;
 }
 
 void Camera::rollUp(double angle) {
     Point3D<double> point(up[0], up[1], up[2]);
-    const Matrix4x4<double> transform = dimensionalTransformations::rotation(point, angle);
+    const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     right = transform * right;
     look = transform * look;
 }
 
 void Camera::rollRight(double angle) {
     Point3D<double> point(right[0], right[1], right[2]);
-    const Matrix4x4<double> transform = dimensionalTransformations::rotation(point, angle);
+    const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     look = transform * look;
     up = transform * up;
 }

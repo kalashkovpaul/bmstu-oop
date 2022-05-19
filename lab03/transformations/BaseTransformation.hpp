@@ -2,7 +2,7 @@
 
 #define BASE_TRANSFORMATION_HPP_
 
-#include "Scene.hpp"
+#include "objects/SceneObject.hpp"
 
 class BaseTransformation {
 public:
@@ -10,7 +10,7 @@ public:
     BaseTransformation(const BaseTransformation&) = delete;
     virtual ~BaseTransformation() = default;
 
-    virtual void transform(Scene*&) = 0;
+    virtual void transform(SceneObject*&) = 0;
 };
 
 #endif

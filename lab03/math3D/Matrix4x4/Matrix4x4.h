@@ -2,9 +2,9 @@
 
 #define MATRIX4X4_H_
 
-#include "Matrix.h"
-#include "Vector4D.h"
-#include "Point3D.h"
+#include "containers/Matrix/Matrix.h"
+#include "math3D/Vector4D/Vector4D.h"
+#include "math3D/Point3D/Point3D.h"
 
 template <typename T>
 class Matrix4x4 : public Matrix<4, T> {

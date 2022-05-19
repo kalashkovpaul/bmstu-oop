@@ -4,7 +4,7 @@
 
 #include <fstream>
 
-#include "Model.hpp"
+#include "objects/Model.hpp"
 
 class BaseUploader {
 public:

@@ -5,10 +5,13 @@
 #include <vector>
 #include <string>
 
-#include "VisibleObject.hpp"
+class Visitor;
+class Camera;
 #include "containers/Vector/Vector.h"
 #include "math3D/Point3D/Point3D.h"
 #include "math3D/Edge/Edge.h"
+#include "gui/drawers.hpp"
+#include "objects/VisibleObject.hpp"
 
 class Model: public VisibleObject {
 public:
@@ -20,8 +23,11 @@ public:
     Model& operator=(const Model&);
     Model& operator=(Model&&) noexcept;
 
+    void acceptDrawVisitor(Visitor* visitor, BaseDrawer& drawer, Camera* camera);
+
     friend class Transformation;
-    // friend class DrawManager; TODO
+    friend class DrawManager;
+    friend class DrawVisitor;
 
 private:
     std::string name;

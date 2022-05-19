@@ -2,33 +2,35 @@
 
 #define COMPOSITE_OBJECT_HPP_
 
-#include "Scene.hpp"
-#include "sceneExceptions.hpp"
-#include "Model.hpp"
-#include "Camera.hpp"
+#include "objects/SceneObject.hpp"
+#include "exceptions/sceneExceptions.hpp"
+#include "objects/Model.hpp"
+#include "objects/Camera.hpp"
+#include "transformations/BaseTransformation.hpp"
 
-class CompositeObject: public Scene {
-    CompositeObject(Scene* camera);
+class CompositeObject: public SceneObject {
+public:
+    CompositeObject(SceneObject* camera);
 
     bool isVisible() const override;
 
-    // void Transform(BaseTransformation& transformation); TODO
+    void transform(BaseTransformation& transformation);
 
-    void addModel(Scene* scene);
+    void addModel(SceneObject* scene);
     void deleteModel(std::size_t index);
 
-    void addCamera(Scene* scene);
+    void addCamera(SceneObject* scene);
     void deleteCamera(std::size_t index);
 
-    Scene*& getModel(std::size_t);
-    Scene*& getCamera(std::size_t);
+    SceneObject*& getModel(std::size_t);
+    SceneObject*& getCamera(std::size_t);
 
-    // friend class DrawManager; TODO
+    friend class DrawManager;
 
 private:
     std::size_t modelsAmount;
     std::size_t camerasAmount;
-    std::vector<Scene*> sceneObjects;
+    std::vector<SceneObject*> sceneObjects;
 };
 
 #endif

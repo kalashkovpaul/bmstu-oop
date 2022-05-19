@@ -3,160 +3,119 @@
 namespace commands {
 
 UploadView::UploadView(const std::string filename): 
-    this.filename(filename) {}
+    filename(filename) {}
 
 void UploadView::execute() {
-    // TODO
+    std::cout << "UploadView is executing" << std::endl; // TODO
 }
 
 DeleteView::DeleteView(const std::size_t viewIndex): 
-    act(action),
-    this.viewIndex(viewIndex) {}
+    viewIndex(viewIndex) {}
 
 void DeleteView::execute() {
-    // TODO
+    std::cout << "DeleteView is executing" << std::endl;// TODO
 }
 
 AddModel::AddModel(const std::size_t viewIndex): 
-    act(action),
-    this.viewIndex(viewIndex) {}
+    viewIndex(viewIndex) {}
 
 void AddModel::execute() {
-    // TODO
+    std::cout << "AddModel is executing" << std::endl;// TODO
 }
 
 DeleteModel::DeleteModel(const std::size_t modelIndex): 
-    act(action),
-    this.modelIndex(modelIndex) {}
+    modelIndex(modelIndex) {}
 
 void DeleteModel::execute() {
-    // TODO
+    std::cout << "DeleteModel is executing" << std::endl;// TODO
 }
 
-AddCamera::AddCamera(Action action): 
-    act(action) {}
+AddCamera::AddCamera() {}
 
 void AddCamera::execute() {
-    // TODO
+    std::cout << "AddCamera is executing" << std::endl;// TODO
 }
 
 DeleteCamera::DeleteCamera(const std::size_t cameraIndex): 
-    act(action),
-    this.cameraIndex(cameraIndex) {}
+    cameraIndex(cameraIndex) {}
 
 void DeleteCamera::execute() {
-    // TODO
+    std::cout << "DeleteCamera is executing" << std::endl;// TODO
 }
 
 TranslateModel::TranslateModel(\
     const std::size_t modelIndex, const Point3D<double>& point): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.point(point) {}
+    modelIndex(modelIndex),
+    point(point) {}
 
 void TranslateModel::execute() {
-    // TODO
+    std::cout << "TranslateModel is executing" << std::endl;// TODO
 }
 
-RotateModelOX::RotateModelOX(\
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+RotateModelOX::RotateModelOX(const std::size_t modelIndex, const double angle): 
+    modelIndex(modelIndex),
+    angle(angle) {}
 
 void RotateModelOX::execute() {
-    // TODO
-}
-
-
-RotateModelOX::RotateModelOX(\
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
-
-void RotateModelOX::execute() {
-    // TODO
+    std::cout << "RotateModelOX is executing" << std::endl;// TODO
 }
 
 RotateModelOY::RotateModelOY(\
     const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+    
+    modelIndex(modelIndex),
+    angle(angle) {}
 
 void RotateModelOY::execute() {
-    // TODO
+    std::cout << "RotateModelOY is executing" << std::endl;// TODO
 }
 
-RotateModelOZ::RotateModelOZ(\
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
+RotateModelOZ::RotateModelOZ(const std::size_t modelIndex, const double angle): 
+    modelIndex(modelIndex),
+    angle(angle) {}
 
 void RotateModelOZ::execute() {
-    // TODO
+    std::cout << "RotateModelOZ is executing" << std::endl;// TODO
 }
 
-RotateModelOZ::RotateModelOZ(\
-    const std::size_t modelIndex, const double angle): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.angle(angle) {}
-
-void RotateModelOZ::execute() {
-    // TODO
-}
-
-ScaleModel::ScaleModel(\
-    const std::size_t modelIndex, const double scaleFactor): 
-    this.act(action),
-    this.modelIndex(modelIndex),
-    this.scaleFactor(scaleFactor) {}
+ScaleModel::ScaleModel(const std::size_t modelIndex, const double scaleFactor): 
+    modelIndex(modelIndex),
+    scaleFactor(scaleFactor) {}
 
 void ScaleModel::execute() {
-    // TODO
+    std::cout << "ScaleModel is executing" << std::endl;// TODO
 }
 
-Draw::Draw(\
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.drawer(drawer) {}
+Draw::Draw(const std::size_t cameraIndex, const Drawer& drawer): 
+    cameraIndex(cameraIndex),
+    drawer(drawer) {}
 
 void Draw::execute() {
-    // TODO
+    std::cout << "Draw is executing" << std::endl;// TODO
 }
 
-RollLook::RollLook(\
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+RollLook::RollLook(const std::size_t cameraIndex, const double angle): 
+    cameraIndex(cameraIndex),
+    angle(angle) {}
 
 void RollLook::execute() {
-    // TODO
+    std::cout << "RollLook is executing" << std::endl;// TODO
 }
 
-RollRight::RollRight(\
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+RollRight::RollRight(const std::size_t cameraIndex, const double angle): 
+    cameraIndex(cameraIndex),
+    angle(angle) {}
 
 void RollRight::execute() {
-    // TODO
+    std::cout << "RollRight is executing" << std::endl;// TODO
 }
 
-RollUp::RollUp(\
-    const std::size_t cameraIndex, const Drawer& drawer): 
-    this.act(action),
-    this.cameraIndex(cameraIndex),
-    this.angle(angle) {}
+RollUp::RollUp(const std::size_t cameraIndex, const double angle): 
+    cameraIndex(cameraIndex),
+    angle(angle) {}
 
 void RollUp::execute() {
-    // TODO
+    std::cout << "RollUp is executing" << std::endl;// TODO
 }
 
 }

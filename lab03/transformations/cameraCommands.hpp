@@ -2,8 +2,7 @@
 
 #define COMMAND_INTERFACE_HPP_
 
-#include "Camera.hpp"
-
+#include "objects/Camera.hpp"
 class ICommand {
 public:
     ICommand() = default;

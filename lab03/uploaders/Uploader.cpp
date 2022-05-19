@@ -1,11 +1,17 @@
-#include "Uploader.hpp"
-#include "uploadExceptions.hpp"
+#include "uploaders/Uploader.hpp"
+#include "exceptions/uploadExceptions.hpp"
 
 Uploader::Uploader(std::string filename):
     filename(filename) {}
 
 Uploader::~Uploader() {
-    close();
+    this->close();
+}
+
+void Uploader::close() {
+    if (!isOpen()) {
+        file.close();
+    }
 }
 
 void Uploader::open() {

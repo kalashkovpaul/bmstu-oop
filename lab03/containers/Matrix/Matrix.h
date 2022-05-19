@@ -1,7 +1,7 @@
 #ifndef MATRIX_H_
 #define MATRIX_H_
 
-#include "RectangularMatrix.h"
+#include "containers/RectangularMatrix/RectangularMatrix.h"
 
 template <std::size_t size, typename T>
 class Matrix : public RectangularMatrix<size, size, T> {

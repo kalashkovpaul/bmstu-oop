@@ -2,15 +2,15 @@
 
 #define INVISIBLE_OBJECT_HPP_
 
-#include "Scene.hpp"
+#include "SceneObject.hpp"
 
-class InvisibleObject: public Scene {
+class InvisibleObject: public SceneObject {
 public:
     explicit InvisibleObject() = default;
     InvisibleObject(const InvisibleObject&) = delete;
-    ~InvisibleObject() override = default;
+    ~InvisibleObject() = default;
 
-    bool isVisible() const final;
+    virtual bool isVisible() const final;
 };
 
 #endif
