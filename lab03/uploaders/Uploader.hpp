@@ -14,7 +14,7 @@ public:
     bool isOpen() const override;
     void close() override;
 
-    const Model getModel() override;
+    void getModel(const std::shared_ptr<Model>& model) override;
 
 private:
     std::string filename;

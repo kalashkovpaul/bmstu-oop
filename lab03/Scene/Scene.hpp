@@ -13,14 +13,14 @@ public:
 
     void transform(BaseTransformation& transformation);
 
-    void addModel(SceneObject* object);
+    void addModel(std::shared_ptr<SceneObject> object);
     void deleteModel(std::size_t index);
 
-    void addCamera(SceneObject* object);
+    void addCamera(std::shared_ptr<SceneObject> object);
     void deleteCamera(std::size_t index);
 
-    SceneObject*& getModel(std::size_t index);
-    SceneObject*& getCamera(std::size_t index);
+    std::shared_ptr<SceneObject>& getModel(std::size_t index);
+    std::shared_ptr<SceneObject>& getCamera(std::size_t index);
 
     friend class DrawManager;
 private:

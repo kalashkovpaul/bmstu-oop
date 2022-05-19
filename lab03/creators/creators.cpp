@@ -1,8 +1,8 @@
 #include "creators/creators.hpp"
 
 template <typename T>
-std::unique_ptr<SceneObject> ConCreator<T>::createSceneObject() {
-    return std::unique_ptr<SceneObject>(new T());
+std::shared_ptr<SceneObject> ConCreator<T>::createSceneObject() {
+    return std::shared_ptr<SceneObject>(new T());
 }
 
 template <typename T>

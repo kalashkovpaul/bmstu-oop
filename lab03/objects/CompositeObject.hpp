@@ -11,27 +11,27 @@
 class CompositeObject: public SceneObject {
 public:
     CompositeObject() = default;
-    CompositeObject(SceneObject* camera);
+    CompositeObject(std::shared_ptr<SceneObject> camera);
 
     bool isVisible() const override;
 
     void transform(BaseTransformation& transformation);
 
-    void addModel(SceneObject* scene);
+    void addModel(std::shared_ptr<SceneObject> scene);
     void deleteModel(std::size_t index);
 
-    void addCamera(SceneObject* scene);
+    void addCamera(std::shared_ptr<SceneObject> scene);
     void deleteCamera(std::size_t index);
 
-    SceneObject*& getModel(std::size_t);
-    SceneObject*& getCamera(std::size_t);
+    std::shared_ptr<SceneObject>& getModel(std::size_t);
+    std::shared_ptr<SceneObject>& getCamera(std::size_t);
 
     friend class DrawManager;
 
 private:
     std::size_t modelsAmount = 0;
     std::size_t camerasAmount = 0;
-    std::vector<SceneObject*> sceneObjects;
+    std::vector<std::shared_ptr<SceneObject>> sceneObjects;
 };
 
 #endif

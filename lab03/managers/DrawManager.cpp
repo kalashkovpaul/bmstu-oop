@@ -1,12 +1,12 @@
 #include "DrawManager.hpp"
 
-void DrawManager::draw(Scene& scene, BaseDrawer& drawer, Camera* camera) {
-    DrawVisitor visitor = DrawVisitor();
+void DrawManager::draw(Scene& scene, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) {
+    std::shared_ptr<Visitor> visitor = std::make_shared<DrawVisitor>();
     
-    for (SceneObject* sceneObject : scene.object.sceneObjects) {
+    for (auto sceneObject : scene.object.sceneObjects) {
         if (sceneObject->isVisible()) {
-            Model* model = reinterpret_cast<Model*>(sceneObject);
-            model->acceptDrawVisitor(&visitor, drawer, camera);
+            const std::shared_ptr<Model> model = std::dynamic_pointer_cast<Model>(sceneObject);
+            model->acceptDrawVisitor(visitor, drawer, camera);
         }
     }
 }

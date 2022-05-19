@@ -9,18 +9,18 @@
 class ModelView {
 public:
     ModelView() = default;
-    ModelView(const ModelView&) = default;
+    // ModelView(const std::shared_ptr<Model>&);
     ~ModelView() = default;
 
-    void addView(const Model& model);
+    void addView(const std::shared_ptr<SceneObject>& model);
     void deleteView(std::size_t index);
 
-    const Model& operator[](std::size_t index) const;
+    const std::shared_ptr<SceneObject>& operator[](std::size_t index) const;
 
 private:
     void checkOutOfRange(std::size_t index) const;
 
-    std::vector<Model> models;
+    std::vector<std::shared_ptr<SceneObject>> models;
 };
 
 #endif

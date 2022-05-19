@@ -36,6 +36,6 @@ Model& Model::operator=(Model&& other) noexcept {
     return *this;
 }
 
-void Model::acceptDrawVisitor(Visitor* visitor, BaseDrawer& drawer, Camera* camera) {
-    visitor->visit(this, drawer, camera);
+void Model::acceptDrawVisitor(std::shared_ptr<Visitor>& visitor, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) {
+    visitor->visit(*this, drawer, camera);
 }

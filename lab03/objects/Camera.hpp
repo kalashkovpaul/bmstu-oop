@@ -6,6 +6,7 @@
 #include "math3D/Point3D/Point3D.h"
 #include "math3D/Matrix4x4/Matrix4x4.h"
 #include "transformations/dimensionalTransformations.hpp"
+#include <iostream>
 
 class Camera: public InvisibleObject {
 public:

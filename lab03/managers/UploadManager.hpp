@@ -2,11 +2,12 @@
 
 #define UPLOAD_MANAGER_HPP_
 
+#include <memory>
 #include "uploaders/Uploader.hpp"
 
 class UploadManager {
 public:
-    static Model uploadModel(BaseUploader& uploader);
+    static void uploadModel(BaseUploader& uploader, const std::shared_ptr<Model>& model);
 
 private:
     UploadManager() = default;    

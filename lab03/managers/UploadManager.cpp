@@ -1,9 +1,7 @@
 #include "UploadManager.hpp"
 
-Model UploadManager::uploadModel(BaseUploader& uploader) {
+void UploadManager::uploadModel(BaseUploader& uploader, const std::shared_ptr<Model>& model) {
     uploader.open();
-    auto model = uploader.getModel();
+    uploader.getModel(model);
     uploader.close();
-
-    return model;
 }

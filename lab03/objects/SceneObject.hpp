@@ -11,7 +11,6 @@ public:
     virtual ~SceneObject() = default;
 
     virtual bool isVisible() const = 0;
-    
 };
 
 #endif

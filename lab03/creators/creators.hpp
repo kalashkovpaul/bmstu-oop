@@ -14,12 +14,12 @@ constexpr std::size_t cameraId = 1;
 
 class Creator {
 public:
-    virtual std::unique_ptr<SceneObject> createSceneObject() = 0;
+    virtual std::shared_ptr<SceneObject> createSceneObject() = 0;
 };
 
 template <typename T>
 class ConCreator: public Creator {
-    std::unique_ptr<SceneObject> createSceneObject() override;
+    std::shared_ptr<SceneObject> createSceneObject() override;
 };
 
 

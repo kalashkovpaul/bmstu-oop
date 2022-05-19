@@ -1,6 +1,6 @@
 #include "ModelView/ModelView.hpp"
 
-void ModelView::addView(const Model& model) {
+void ModelView::addView(const std::shared_ptr<SceneObject>& model) {
     models.push_back(model);
 }
 
@@ -15,7 +15,7 @@ void ModelView::deleteView(std::size_t index) {
     models.erase(models.begin() +  index);
 }
 
-const Model& ModelView::operator[](std::size_t index) const {
+const std::shared_ptr<SceneObject>& ModelView::operator[](std::size_t index) const {
     checkOutOfRange(index);
     return models[index];
 }

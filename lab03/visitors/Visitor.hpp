@@ -12,6 +12,6 @@ public:
     Visitor(const Visitor&) = delete;
     ~Visitor() = default;
 
-    virtual void visit(Model *model, BaseDrawer& drawer, Camera* camera) = 0;
+    virtual void visit(Model& model, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) = 0;
 };
 #endif

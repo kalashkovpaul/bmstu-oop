@@ -28,7 +28,7 @@ bool Uploader::isOpen() const {
     return file.is_open();
 }
 
-const Model Uploader::getModel() {
+void Uploader::getModel(const std::shared_ptr<Model>& model) {
     if (!isOpen()) {
         throw ReadStreamException();
     }
@@ -36,13 +36,12 @@ const Model Uploader::getModel() {
     file >> verticesAmount >> edgesAmount;
 
     std::vector<Point3D<double>> vertices(verticesAmount);
-    for (auto& vertex : vertices) {
+    for (auto& vertex : model->vertices) {
         file >> vertex;
     }
     std::vector<Edge> edges(edgesAmount);
-    for (auto& edge : edges) {
+    for (auto& edge : model->edges) {
         file >> edge;
     }
-    return Model(filename, vertices, edges);
 }
  

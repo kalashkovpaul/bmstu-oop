@@ -20,8 +20,13 @@ UploadView::UploadView(const std::string filename):
 void UploadView::execute(Facade& facade) {
     std::cout << "UploadView is executing" << std::endl; // TODO
     Uploader uploader(filename);
-    ModelView modelView = getModelView(facade);
-    modelView.addView(UploadManager::uploadModel(uploader));
+    ModelView& modelView = getModelView(facade);
+    Solution& solution = getSolution(facade);
+    const std::unique_ptr<Creator> cr = solution.create(modelId);
+    const std::shared_ptr<SceneObject> object = cr->createSceneObject();
+    const std::shared_ptr<Model> model = std::dynamic_pointer_cast<Model>(object);
+    UploadManager::uploadModel(uploader, model);
+    modelView.addView(model);
 }
 
 DeleteView::DeleteView(const std::size_t viewIndex): 
@@ -29,7 +34,7 @@ DeleteView::DeleteView(const std::size_t viewIndex):
 
 void DeleteView::execute(Facade& facade) {
     std::cout << "DeleteView is executing" << std::endl;// TODO
-    ModelView modelView = getModelView(facade);
+    ModelView& modelView = getModelView(facade);
     modelView.deleteView(viewIndex);
 }
 
@@ -38,10 +43,12 @@ AddModel::AddModel(const std::size_t viewIndex):
 
 void AddModel::execute(Facade& facade) {
     std::cout << "AddModel is executing" << std::endl;// TODO
-    Scene scene = getScene(facade);
-    Solution solution = getSolution(facade);
-    std::unique_ptr<Creator> cr = solution.create(modelId);
-    scene.addModel((cr->createSceneObject()).get());
+    Scene& scene = getScene(facade);
+    // Solution& solution = getSolution(facade);
+    // std::unique_ptr<Creator> cr = solution.create(modelId);
+    // scene.addModel((cr->createSceneObject()));
+    ModelView& modelView = getModelView(facade);
+    scene.addModel(modelView[viewIndex]);
 }
 
 DeleteModel::DeleteModel(const std::size_t modelIndex): 
@@ -49,7 +56,7 @@ DeleteModel::DeleteModel(const std::size_t modelIndex):
 
 void DeleteModel::execute(Facade& facade) {
     std::cout << "DeleteModel is executing" << std::endl;// TODO
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     scene.deleteModel(modelIndex);
 }
 
@@ -57,10 +64,10 @@ AddCamera::AddCamera() {}
 
 void AddCamera::execute(Facade& facade) {
     std::cout << "AddCamera is executing" << std::endl;// TODO
-    Scene scene = getScene(facade);
-    Solution solution = getSolution(facade);
+    Scene& scene = getScene(facade);
+    Solution& solution = getSolution(facade);
     std::unique_ptr<Creator> cr = solution.create(cameraId);
-    scene.addCamera((cr->createSceneObject()).get());
+    scene.addCamera((cr->createSceneObject()));
 }
 
 DeleteCamera::DeleteCamera(const std::size_t cameraIndex): 
@@ -68,7 +75,7 @@ DeleteCamera::DeleteCamera(const std::size_t cameraIndex):
 
 void DeleteCamera::execute(Facade& facade) {
     std::cout << "DeleteCamera is executing" << std::endl;// TODO
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     scene.deleteCamera(cameraIndex);
 }
 
@@ -80,7 +87,7 @@ void TranslateModel::execute(Facade& facade) {
     std::cout << "TranslateModel is executing" << std::endl;// TODO
     dimensionalTransformations::Translation move(point);
     Transformation transformation(move);
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
@@ -92,7 +99,7 @@ void RotateModelOX::execute(Facade& facade) {
     std::cout << "RotateModelOX is executing" << std::endl;// TODO
     dimensionalTransformations::RotationOX rotation(angle);
     Transformation transformation(rotation);
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
@@ -104,7 +111,7 @@ void RotateModelOY::execute(Facade& facade) {
     std::cout << "RotateModelOY is executing" << std::endl;// TODO
     dimensionalTransformations::RotationOY rotation(angle);
     Transformation transformation(rotation);
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
@@ -116,7 +123,7 @@ void RotateModelOZ::execute(Facade& facade) {
     std::cout << "RotateModelOZ is executing" << std::endl;// TODO
     dimensionalTransformations::RotationOZ rotation(angle);
     Transformation transformation(rotation);
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
@@ -128,7 +135,7 @@ void ScaleModel::execute(Facade& facade) {
     std::cout << "ScaleModel is executing" << std::endl;// TODO
     dimensionalTransformations::Scaling scale(scaleFactor);
     Transformation transformation(scale);
-    Scene scene = getScene(facade);
+    Scene& scene = getScene(facade);
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
@@ -138,8 +145,8 @@ Draw::Draw(const std::size_t cameraIndex, Drawer& drawer):
 
 void Draw::execute(Facade& facade) {
     std::cout << "Draw is executing" << std::endl;// TODO
-    Scene scene = getScene(facade);
-    DrawManager::draw(scene, drawer, reinterpret_cast<Camera*>(scene.getCamera(cameraIndex)));
+    Scene& scene = getScene(facade);
+    DrawManager::draw(scene, drawer, std::dynamic_pointer_cast<Camera>(scene.getCamera(cameraIndex)));
 }
 
 RollLook::RollLook(const std::size_t cameraIndex, const double angle): 

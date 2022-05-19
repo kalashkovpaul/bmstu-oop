@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Visitor;
 class Camera;
@@ -11,6 +12,7 @@ class Camera;
 #include "math3D/Point3D/Point3D.h"
 #include "math3D/Edge/Edge.h"
 #include "gui/drawers.hpp"
+#include "uploaders/Uploader.hpp"
 #include "objects/VisibleObject.hpp"
 
 class Model: public VisibleObject {
@@ -23,12 +25,13 @@ public:
     Model& operator=(const Model&);
     Model& operator=(Model&&) noexcept;
 
-    void acceptDrawVisitor(Visitor* visitor, BaseDrawer& drawer, Camera* camera);
+    void acceptDrawVisitor(std::shared_ptr<Visitor>& visitor, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera);
 
     friend class Transformation;
     friend class DrawManager;
     friend class DrawVisitor;
-
+    friend class Uploader;
+    
 private:
     std::string name;
     std::vector<Point3D<double>> vertices;

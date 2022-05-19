@@ -2,13 +2,14 @@
 
 #define COMMAND_INTERFACE_HPP_
 
+#include <memory>
 #include "objects/Camera.hpp"
 class ICommand {
 public:
     ICommand() = default;
     ICommand(const ICommand&) = delete;
 
-    virtual void execute(Camera*&) = 0;
+    virtual void execute(std::shared_ptr<Camera>&) = 0;
 };
 
 namespace cameraCommands {
@@ -18,7 +19,7 @@ public:
     explicit RollLook(double angle);
     RollLook(const RollLook&) = delete;
 
-    void execute(Camera*& camera) override;
+    void execute(std::shared_ptr<Camera>& camera) override;
 
 private:
     double angle;
@@ -29,7 +30,7 @@ public:
     explicit RollUp(double angle);
     RollUp(const RollUp&) = delete;
 
-    void execute(Camera*& camera) override;
+    void execute(std::shared_ptr<Camera>& camera) override;
 
 private:
     double angle;
@@ -40,7 +41,7 @@ public:
     explicit RollRight(double angle);
     RollRight(const RollRight&) = delete;
 
-    void execute(Camera*& camera) override;
+    void execute(std::shared_ptr<Camera>& camera) override;
 
 private:
     double angle;

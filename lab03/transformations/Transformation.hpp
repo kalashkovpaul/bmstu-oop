@@ -11,7 +11,7 @@ public:
     explicit Transformation(ITransfromation& interface);
     ~Transformation() override = default;
 
-    void transform(SceneObject*& object) override;
+    void transform(std::shared_ptr<SceneObject>& object) override;
 
 private:
     Matrix4x4<double> matrix = Matrix4x4<double>();

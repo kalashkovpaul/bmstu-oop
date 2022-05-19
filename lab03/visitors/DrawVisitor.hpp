@@ -11,7 +11,7 @@ public:
     explicit DrawVisitor() = default;
     DrawVisitor(const DrawVisitor&) = delete;
     ~DrawVisitor() = default;
-    void visit(Model* model, BaseDrawer& drawer, Camera* camera) override;
+    void visit(Model& model, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) override;
 };
 
 #endif

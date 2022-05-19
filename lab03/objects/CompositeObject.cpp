@@ -1,6 +1,7 @@
 #include "CompositeObject.hpp"
+#include <iostream>
 
-CompositeObject::CompositeObject(SceneObject* camera) {
+CompositeObject::CompositeObject(std::shared_ptr<SceneObject> camera) {
     addCamera(camera);
 }
 
@@ -14,8 +15,9 @@ void CompositeObject::transform(BaseTransformation& transformation) {
     }
 }
 
-void CompositeObject::addModel(SceneObject* object) {
-    sceneObjects.push_back(reinterpret_cast<Model*>(object));
+void CompositeObject::addModel(std::shared_ptr<SceneObject> object) {
+    // std::shared_ptr<Model> ptr = reinterpret_cast<std::shared_ptr<Model>>(object)
+    sceneObjects.push_back(object);
     modelsAmount++;
 }
 
@@ -37,8 +39,8 @@ void CompositeObject::deleteModel(std::size_t index) {
     }
 }
 
-void CompositeObject::addCamera(SceneObject* object) {
-    Camera* ptr = reinterpret_cast<Camera*>(object);
+void CompositeObject::addCamera(std::shared_ptr<SceneObject> object) {
+    // reinterpret_cast<std::shared_ptr<Camera>>(object);
     sceneObjects.push_back(object);
     camerasAmount++;
 }
@@ -61,7 +63,7 @@ void CompositeObject::deleteCamera(std::size_t index) {
     }
 }
 
-SceneObject*& CompositeObject::getModel(std::size_t index) {
+std::shared_ptr<SceneObject>& CompositeObject::getModel(std::size_t index) {
     if (index < modelsAmount) {
         std::size_t count = 0;
         std::size_t i = 0;
@@ -78,7 +80,7 @@ SceneObject*& CompositeObject::getModel(std::size_t index) {
     }
 }
 
-SceneObject*& CompositeObject::getCamera(std::size_t index) {
+std::shared_ptr<SceneObject>& CompositeObject::getCamera(std::size_t index) {
     if (index < camerasAmount) {
         std::size_t count = 0;
         std::size_t i = 0;
