@@ -38,7 +38,8 @@ void CompositeObject::deleteModel(std::size_t index) {
 }
 
 void CompositeObject::addCamera(SceneObject* object) {
-    sceneObjects.push_back(reinterpret_cast<Camera*>(object));
+    Camera* ptr = reinterpret_cast<Camera*>(object);
+    sceneObjects.push_back(object);
     camerasAmount++;
 }
 
@@ -82,7 +83,7 @@ SceneObject*& CompositeObject::getCamera(std::size_t index) {
         std::size_t count = 0;
         std::size_t i = 0;
         while (i < sceneObjects.size()) {
-            if (!sceneObjects[i]->isVisible()) {
+            if (!(sceneObjects[i]->isVisible())) {
                 count++;
                 if (count - 1 == index)
                     break;

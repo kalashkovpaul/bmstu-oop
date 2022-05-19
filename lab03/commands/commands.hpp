@@ -10,7 +10,15 @@
 #include "math3D/Point3D/Point3D.h"
 #include "managers/BaseManager.hpp"
 #include "managers/UploadManager.hpp"
+#include "managers/ModelManager.hpp"
+#include "managers/DrawManager.hpp"
 #include "gui/drawers.hpp"
+#include "Facade/Facade.hpp"
+#include "creators/creators.hpp"
+#include "transformations/Transformation.hpp"
+class Facade;
+class Scene;
+class ModelView;
 
 class Command {
 public:
@@ -18,7 +26,11 @@ public:
     Command(const Command&) = delete;
     virtual ~Command() = default;
 
-    virtual void execute() = 0;
+    virtual void execute(Facade& facade) = 0;
+protected:
+    Scene& getScene(Facade& facade);
+    ModelView& getModelView(Facade& facade);
+    Solution& getSolution(Facade& facade);
 };
 
 namespace commands {
@@ -29,7 +41,7 @@ public:
     UploadView(const UploadView&) = delete;
     ~UploadView() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 private:
     const std::string filename;
 };
@@ -40,7 +52,7 @@ public:
     DeleteView(const DeleteView&) = delete;
     ~DeleteView() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
     
 private:
     const std::size_t viewIndex;
@@ -52,7 +64,7 @@ public:
     AddModel(const AddModel&) = delete;
     ~AddModel() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t viewIndex;
@@ -64,7 +76,7 @@ public:
     DeleteModel(const DeleteModel&) = delete;
     ~DeleteModel() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -76,7 +88,7 @@ public:
     AddCamera(const AddCamera&) = delete;
     ~AddCamera() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 };
 
 class DeleteCamera: public Command {
@@ -85,7 +97,7 @@ public:
     DeleteCamera(const DeleteCamera&) = delete;
     ~DeleteCamera() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t cameraIndex;
@@ -97,7 +109,7 @@ public:
     TranslateModel(const TranslateModel&) = delete;
     ~TranslateModel() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -110,7 +122,7 @@ public:
     RotateModelOX(const RotateModelOX&) = delete;
     ~RotateModelOX() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -123,7 +135,7 @@ public:
     RotateModelOY(const RotateModelOY&) = delete;
     ~RotateModelOY() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -136,7 +148,7 @@ public:
     RotateModelOZ(const RotateModelOZ&) = delete;
     ~RotateModelOZ() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -149,7 +161,7 @@ public:
     ScaleModel(const ScaleModel&) = delete;
     ~ScaleModel() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t modelIndex;
@@ -158,15 +170,15 @@ private:
 
 class Draw: public Command {
 public:
-    explicit Draw(const std::size_t cameraIndex, const Drawer& drawer);
+    explicit Draw(const std::size_t cameraIndex, Drawer& drawer);
     Draw(const Draw&) = delete;
     ~Draw() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t cameraIndex;
-    const Drawer& drawer;
+    Drawer& drawer;
 };
 
 class RollLook: public Command {
@@ -175,7 +187,7 @@ public:
     RollLook(const RollLook&) = delete;
     ~RollLook() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t cameraIndex;
@@ -188,7 +200,7 @@ public:
     RollRight(const RollRight&) = delete;
     ~RollRight() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t cameraIndex;
@@ -201,7 +213,7 @@ public:
     RollUp(const RollUp&) = delete;
     ~RollUp() = default;
 
-    virtual void execute() override;
+    virtual void execute(Facade& facade) override;
 
 private:
     const std::size_t cameraIndex;

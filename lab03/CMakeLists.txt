@@ -37,6 +37,10 @@ set(SOURCES
         transformations/ITransformation.cpp
         uploaders/Uploader.cpp
         visitors/DrawVisitor.cpp
+        exceptions/modelViewExceptions.cpp
+        ModelView/ModelView.cpp
+        creators/creators.cpp
+        exceptions/CreationException.cpp
 )
 
 set(HEADERS
@@ -82,6 +86,10 @@ set(HEADERS
         uploaders/Uploader.hpp
         visitors/Visitor.hpp
         visitors/DrawVisitor.hpp
+        exceptions/modelViewExceptions.hpp
+        ModelView/ModelView.hpp
+        creators/creators.hpp
+        exceptions/CreationException.hpp
 )
 
 add_executable(lab03 ${SOURCES} ${HEADERS})

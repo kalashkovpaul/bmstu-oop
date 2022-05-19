@@ -8,6 +8,8 @@
 class Scene {
 public:
     Scene() = default;
+    Scene(const Scene&) = default;
+    ~Scene() = default;
 
     void transform(BaseTransformation& transformation);
 

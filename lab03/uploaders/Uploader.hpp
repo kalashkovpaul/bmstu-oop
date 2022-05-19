@@ -6,6 +6,7 @@
 #include "BaseUploader.hpp"
 
 class Uploader: public BaseUploader {
+public:
     explicit Uploader(std::string filename);
     ~Uploader() override;
 

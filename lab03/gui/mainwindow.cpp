@@ -10,7 +10,7 @@
 #include "exceptions/BaseException.hpp"
 
 MainWindow::MainWindow(QWidget* parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow), command_controller() {
+    QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   ui->frame->setFixedWidth(250);
   this->set_up_scene_view();

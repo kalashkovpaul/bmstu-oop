@@ -7,7 +7,7 @@
 class SceneObject {
 public:
     explicit SceneObject() = default;
-    SceneObject(const SceneObject&) = delete;
+    SceneObject(const SceneObject&) = default;
     virtual ~SceneObject() = default;
 
     virtual bool isVisible() const = 0;

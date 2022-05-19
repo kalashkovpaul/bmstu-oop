@@ -10,7 +10,7 @@ class Scene;
 
 class DrawManager {
 public:
-    static void Draw(Scene& scene, BaseDrawer& drawer, Camera* camera);
+    static void draw(Scene& scene, BaseDrawer& drawer, Camera* camera);
 
 private:
     DrawManager() = default;

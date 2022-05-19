@@ -10,6 +10,7 @@
 
 class CompositeObject: public SceneObject {
 public:
+    CompositeObject() = default;
     CompositeObject(SceneObject* camera);
 
     bool isVisible() const override;
@@ -28,8 +29,8 @@ public:
     friend class DrawManager;
 
 private:
-    std::size_t modelsAmount;
-    std::size_t camerasAmount;
+    std::size_t modelsAmount = 0;
+    std::size_t camerasAmount = 0;
     std::vector<SceneObject*> sceneObjects;
 };
 
