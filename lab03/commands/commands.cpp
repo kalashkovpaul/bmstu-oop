@@ -79,7 +79,7 @@ void DeleteCamera::execute(Facade& facade) {
     scene.deleteCamera(cameraIndex);
 }
 
-TranslateModel::TranslateModel(const std::size_t modelIndex, const Point3D<double>& point): 
+TranslateModel::TranslateModel(const ssize_t modelIndex, const Point3D<double>& point): 
     modelIndex(modelIndex),
     point(point) {}
 
@@ -91,7 +91,7 @@ void TranslateModel::execute(Facade& facade) {
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
-RotateModelOX::RotateModelOX(const std::size_t modelIndex, const double angle): 
+RotateModelOX::RotateModelOX(const ssize_t modelIndex, const double angle): 
     modelIndex(modelIndex),
     angle(angle) {}
 
@@ -103,7 +103,7 @@ void RotateModelOX::execute(Facade& facade) {
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
-RotateModelOY::RotateModelOY(const std::size_t modelIndex, const double angle): 
+RotateModelOY::RotateModelOY(const ssize_t modelIndex, const double angle): 
     modelIndex(modelIndex),
     angle(angle) {}
 
@@ -115,7 +115,7 @@ void RotateModelOY::execute(Facade& facade) {
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
-RotateModelOZ::RotateModelOZ(const std::size_t modelIndex, const double angle): 
+RotateModelOZ::RotateModelOZ(const ssize_t modelIndex, const double angle): 
     modelIndex(modelIndex),
     angle(angle) {}
 
@@ -127,7 +127,7 @@ void RotateModelOZ::execute(Facade& facade) {
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
-ScaleModel::ScaleModel(const std::size_t modelIndex, const double scaleFactor): 
+ScaleModel::ScaleModel(const ssize_t modelIndex, const double scaleFactor): 
     modelIndex(modelIndex),
     scaleFactor(scaleFactor) {}
 
@@ -139,7 +139,7 @@ void ScaleModel::execute(Facade& facade) {
     ModelManager::transform(scene, transformation, modelIndex);
 }
 
-Draw::Draw(const std::size_t cameraIndex, Drawer& drawer): 
+Draw::Draw(const ssize_t cameraIndex, Drawer& drawer): 
     cameraIndex(cameraIndex),
     drawer(drawer) {}
 
@@ -155,6 +155,9 @@ RollLook::RollLook(const std::size_t cameraIndex, const double angle):
 
 void RollLook::execute(Facade& facade) {
     std::cout << "RollLook is executing" << std::endl;// TODO
+    cameraCommands::RollLook rollLook(angle);
+    Scene& scene = getScene(facade);
+    CameraManager::transform(scene, rollLook, cameraIndex);
 }
 
 RollRight::RollRight(const std::size_t cameraIndex, const double angle): 
@@ -163,6 +166,9 @@ RollRight::RollRight(const std::size_t cameraIndex, const double angle):
 
 void RollRight::execute(Facade& facade) {
     std::cout << "RollRight is executing" << std::endl;// TODO
+    cameraCommands::RollRight rollRight(angle);
+    Scene& scene = getScene(facade);
+    CameraManager::transform(scene, rollRight, cameraIndex);
 }
 
 RollUp::RollUp(const std::size_t cameraIndex, const double angle): 
@@ -171,6 +177,9 @@ RollUp::RollUp(const std::size_t cameraIndex, const double angle):
 
 void RollUp::execute(Facade& facade) {
     std::cout << "RollUp is executing" << std::endl;// TODO
+    cameraCommands::RollUp rollUp(angle);
+    Scene& scene = getScene(facade);
+    CameraManager::transform(scene, rollUp, cameraIndex);
 }
 
 }

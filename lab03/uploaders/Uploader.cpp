@@ -35,10 +35,11 @@ void Uploader::getModel(const std::shared_ptr<Model>& model) {
     std::size_t verticesAmount, edgesAmount;
     file >> verticesAmount >> edgesAmount;
 
-    std::vector<Point3D<double>> vertices(verticesAmount);
+    model->vertices.resize(verticesAmount);
     for (auto& vertex : model->vertices) {
         file >> vertex;
     }
+    model->edges.resize(edgesAmount);
     std::vector<Edge> edges(edgesAmount);
     for (auto& edge : model->edges) {
         file >> edge;

@@ -7,7 +7,7 @@
 
 class ModelManager {
 public:
-    static void transform(Scene& scene, BaseTransformation& transfromation, std::size_t index);
+    static void transform(Scene& scene, BaseTransformation& transfromation, ssize_t index);
 
 private:
     ModelManager() = default;

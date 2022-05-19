@@ -86,7 +86,7 @@ void MainWindow::keyPressEvent(QKeyEvent* e) {
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_Minus) {
-      commands::ScaleModel comm(model_current_index, SCALE_FACTOR);
+      commands::ScaleModel comm(model_current_index, 1 / SCALE_FACTOR);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_H) {

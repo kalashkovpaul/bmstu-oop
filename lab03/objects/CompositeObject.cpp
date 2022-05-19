@@ -31,6 +31,7 @@ void CompositeObject::deleteModel(std::size_t index) {
                 if (count - 1 == index)
                     break;
             }
+            i++;
         }
         sceneObjects.erase(sceneObjects.begin() + i);
         modelsAmount--;
@@ -55,6 +56,7 @@ void CompositeObject::deleteCamera(std::size_t index) {
                 if (count - 1 == index)
                     break;
             }
+            i++;
         }
         sceneObjects.erase(sceneObjects.begin() + i);
         camerasAmount--;
@@ -73,6 +75,7 @@ std::shared_ptr<SceneObject>& CompositeObject::getModel(std::size_t index) {
                 if (count - 1 == index)
                     break;
             }
+            i++;
         }
         return sceneObjects[i];
     } else {
@@ -90,6 +93,7 @@ std::shared_ptr<SceneObject>& CompositeObject::getCamera(std::size_t index) {
                 if (count - 1 == index)
                     break;
             }
+            i++;
         }
         return sceneObjects[i];
     } else {

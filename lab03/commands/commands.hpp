@@ -12,10 +12,13 @@
 #include "managers/UploadManager.hpp"
 #include "managers/ModelManager.hpp"
 #include "managers/DrawManager.hpp"
+#include "managers/CameraManager.hpp"
 #include "gui/drawers.hpp"
 #include "Facade/Facade.hpp"
 #include "creators/creators.hpp"
 #include "transformations/Transformation.hpp"
+#include "transformations/cameraCommands.hpp"
+
 class Facade;
 class Scene;
 class ModelView;
@@ -105,79 +108,79 @@ private:
 
 class TranslateModel: public Command {
 public:
-    explicit TranslateModel(const std::size_t modelIndex, const Point3D<double>& point);
+    explicit TranslateModel(const ssize_t modelIndex, const Point3D<double>& point);
     TranslateModel(const TranslateModel&) = delete;
     ~TranslateModel() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t modelIndex;
+    const ssize_t modelIndex;
     const Point3D<double> point;
 };
 
 class RotateModelOX: public Command {
 public:
-    explicit RotateModelOX(const std::size_t modelIndex, const double angle);
+    explicit RotateModelOX(const ssize_t modelIndex, const double angle);
     RotateModelOX(const RotateModelOX&) = delete;
     ~RotateModelOX() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t modelIndex;
+    const ssize_t modelIndex;
     const double angle;
 };
 
 class RotateModelOY: public Command {
 public:
-    explicit RotateModelOY(const std::size_t modelIndex, const double angle);
+    explicit RotateModelOY(const ssize_t modelIndex, const double angle);
     RotateModelOY(const RotateModelOY&) = delete;
     ~RotateModelOY() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t modelIndex;
+    const ssize_t modelIndex;
     const double angle;
 };
 
 class RotateModelOZ: public Command {
 public:
-    explicit RotateModelOZ(const std::size_t modelIndex, const double angle);
+    explicit RotateModelOZ(const ssize_t modelIndex, const double angle);
     RotateModelOZ(const RotateModelOZ&) = delete;
     ~RotateModelOZ() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t modelIndex;
+    const ssize_t modelIndex;
     const double angle;
 };
 
 class ScaleModel: public Command {
 public:
-    explicit ScaleModel(const std::size_t modelIndex, const double scaleFactor);
+    explicit ScaleModel(const ssize_t modelIndex, const double scaleFactor);
     ScaleModel(const ScaleModel&) = delete;
     ~ScaleModel() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t modelIndex;
+    const ssize_t modelIndex;
     const double scaleFactor;
 };
 
 class Draw: public Command {
 public:
-    explicit Draw(const std::size_t cameraIndex, Drawer& drawer);
+    explicit Draw(const ssize_t cameraIndex, Drawer& drawer);
     Draw(const Draw&) = delete;
     ~Draw() = default;
 
     virtual void execute(Facade& facade) override;
 
 private:
-    const std::size_t cameraIndex;
+    const ssize_t cameraIndex;
     Drawer& drawer;
 };
 
