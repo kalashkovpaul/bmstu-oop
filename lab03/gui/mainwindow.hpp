@@ -15,7 +15,7 @@ class MainWindow;
 class MainWindow : public QMainWindow {
  Q_OBJECT
 
-  const double ANGLE = 0.001 * M_PI / 180;
+  const double ANGLE = 1 * M_PI / 180;
   const double OFFSET = 5;
   const double SCALE_FACTOR = 1.25;
 

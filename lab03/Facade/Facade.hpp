@@ -2,11 +2,10 @@
 #define FACADE_H_
 
 #include "commands/commands.hpp"
+class Command;
 #include "Scene/Scene.hpp"
 #include "ModelView/ModelView.hpp"
 #include "creators/creators.hpp"
-class Command;
-// #include "exceptions/base_exception.hpp" TODO
 
 class Facade {
 public:

@@ -31,4 +31,4 @@ inline std::ostream& operator<<(std::ostream& os, const Edge& edge);
 
 #include "Edge.hpp"
 
-#endif  // LAB04_MATH3D_EDGE_HPP_
+#endif

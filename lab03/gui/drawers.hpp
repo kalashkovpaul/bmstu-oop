@@ -27,4 +27,4 @@ class Drawer : public BaseDrawer {
   QGraphicsScene* graphicsScene;
 };
 
-#endif  // LAB04_GUI_DRAWER_HPP_
+#endif

@@ -27,6 +27,8 @@ public:
 
     void acceptDrawVisitor(std::shared_ptr<Visitor>& visitor, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera);
 
+    std::shared_ptr<SceneObject> clone() const override;
+
     friend class Transformation;
     friend class DrawManager;
     friend class DrawVisitor;

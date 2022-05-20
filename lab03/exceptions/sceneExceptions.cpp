@@ -14,3 +14,10 @@ const char* SceneOutOfRangeException::what() const noexcept {
     return message.empty() ? "Scene::OutOfRangeException" : message.c_str();
 }
 
+SceneCloneException::SceneCloneException(const char* message):
+    BaseSceneException(message) {}
+
+const char* SceneCloneException::what() const noexcept {
+    return message.empty() ? "Scene::SceneCloneException" : message.c_str();
+}
+

@@ -9,7 +9,6 @@
 class ModelView {
 public:
     ModelView() = default;
-    // ModelView(const std::shared_ptr<Model>&);
     ~ModelView() = default;
 
     void addView(const std::shared_ptr<SceneObject>& model);

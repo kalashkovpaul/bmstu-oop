@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May 20 00:03:15 2022
+# Make data base, printed on Fri May 20 15:16:31 2022
 
 # Variables
 
@@ -53,7 +51,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:44657
+JOURNAL_STREAM = 8:46536
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,13 +75,13 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 972
+MANAGERPID = 955
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 LC_NAME = ru_RU.UTF-8
 # environment
-VSCODE_CWD = /home/paul
+VSCODE_CWD = /media/paul/kalashkov/university/forthTerm/oop
 # environment
 GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
 # default
@@ -93,7 +91,7 @@ PATH = /home/paul/.nvm/versions/node/v17.6.0/bin:/home/paul/.local/bin:/usr/loca
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1257,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1257
+SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1287,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1287
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -113,7 +111,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 3e9c247daa7e43cab567de1125592c48
+INVOCATION_ID = ec8b43a09e064327b7f606ce2a1f99f5
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -137,7 +135,7 @@ PWD = /media/paul/kalashkov/university/forthTerm/oop/repo/lab03
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1196
+SSH_AGENT_PID = 1206
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -193,7 +191,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b2a5d18b-ef55-4274-b5f5-53525d45c04d.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c6d5deca-a46a-47bf-853d-f164135faaa2.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -212,6 +210,8 @@ XDG_CURRENT_DESKTOP = Unity
 LC_TELEPHONE = ru_RU.UTF-8
 # default
 MAKE_COMMAND := make
+# environment
+OLDPWD = /home/paul
 # default
 .VARIABLES := 
 # automatic
@@ -233,6 +233,8 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = ru_RU.UTF-8
 # environment
+NO_AT_BRIDGE = 1
+# environment
 QT_ACCESSIBILITY = 1
 # default
 MAKEFILES := 
@@ -249,11 +251,11 @@ SNAP_NAME = code
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/2095ff9d_c530_4f44_ab3c_f0c19d38e5fb
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/7c976b89_4add_4bfd_839f_e76c211a6c5d
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.136
+GNOME_TERMINAL_SERVICE = :1.117
 # default
 SUFFIXES := 
 # environment
@@ -275,9 +277,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 4321
+VSCODE_PID = 2978
 # variable set hash-table stats:
-# Load=132/1024=13%, Rehash=0, Collisions=19/154=12%
+# Load=134/1024=13%, Rehash=0, Collisions=19/156=12%
 
 # Pattern-specific Variable Values
 
@@ -286,6 +288,8 @@ VSCODE_PID = 4321
 # Directories
 
  
+make: *** No rule to make target 'all'.  Stop.
+
 # . (device 2049, inode 438473): 25 files, no impossibilities.
 
 # 25 files, no impossibilities in 1 directories.
@@ -344,6 +348,6 @@ GNUmakefile:
 # strcache performance: lookups = 36 / hit rate = 8%
 # hash-table stats:
 # Load=33/8192=0%, Rehash=0, Collisions=1/36=3%
-# Finished Make data base on Fri May 20 00:03:15 2022
+# Finished Make data base on Fri May 20 15:16:31 2022
 
  

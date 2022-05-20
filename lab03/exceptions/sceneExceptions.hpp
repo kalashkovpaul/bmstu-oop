@@ -21,4 +21,12 @@ public:
 
 };
 
+class SceneCloneException: public BaseSceneException {
+public:
+    explicit SceneCloneException() = default;
+    explicit SceneCloneException(const char* message);
+
+    const char* what() const noexcept override;
+};
+
 #endif

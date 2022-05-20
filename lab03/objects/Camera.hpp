@@ -2,11 +2,12 @@
 
 #define CAMERA_HPP_
 
+#include <iostream>
+#include <memory>
 #include "objects/InvisibleObject.hpp"
 #include "math3D/Point3D/Point3D.h"
 #include "math3D/Matrix4x4/Matrix4x4.h"
 #include "transformations/dimensionalTransformations.hpp"
-#include <iostream>
 
 class Camera: public InvisibleObject {
 public:
@@ -24,6 +25,8 @@ public:
     void rollLook(double);
     void rollUp(double);
     void rollRight(double);
+
+    std::shared_ptr<SceneObject> clone() const override;
 
 private:
     Vector4D<double> look;

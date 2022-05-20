@@ -5,22 +5,20 @@
 #include <string>
 #include <memory>
 
-#include <iostream> // TODO Shouldn't be here
 
 #include "math3D/Point3D/Point3D.h"
-#include "managers/BaseManager.hpp"
 #include "managers/UploadManager.hpp"
 #include "managers/ModelManager.hpp"
 #include "managers/DrawManager.hpp"
 #include "managers/CameraManager.hpp"
 #include "gui/drawers.hpp"
 #include "Facade/Facade.hpp"
+class Facade;
 #include "creators/creators.hpp"
 #include "transformations/Transformation.hpp"
 #include "transformations/cameraCommands.hpp"
-
-class Facade;
 class Scene;
+
 class ModelView;
 
 class Command {

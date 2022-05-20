@@ -1,4 +1,5 @@
 #include "ModelManager.hpp"
+#include <iostream>
 
 void ModelManager::transform(Scene& scene, BaseTransformation& transformation, ssize_t index) {
     if (index == -1) {

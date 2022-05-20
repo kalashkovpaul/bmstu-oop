@@ -8,9 +8,9 @@ Model::Model(std::string name, std::vector<Point3D<double>> vertices, std::vecto
 
 Model::Model(const Model& other):
     VisibleObject(),
-    name(other.name),
-    vertices(other.vertices),
-    edges(other.edges) {}
+    name(std::move(other.name)),
+    vertices(std::move(other.vertices)),
+    edges(std::move(other.edges)) {}
 
 Model::Model(Model&& other) noexcept:
     name(std::move(other.name)),
@@ -34,6 +34,10 @@ Model& Model::operator=(Model&& other) noexcept {
         other.~Model();
     }
     return *this;
+}
+
+std::shared_ptr<SceneObject> Model::clone() const {
+    return std::make_shared<Model>(*this);
 }
 
 void Model::acceptDrawVisitor(std::shared_ptr<Visitor>& visitor, BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) {

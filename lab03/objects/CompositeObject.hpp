@@ -26,6 +26,8 @@ public:
     std::shared_ptr<SceneObject>& getModel(std::size_t);
     std::shared_ptr<SceneObject>& getCamera(std::size_t);
 
+    std::shared_ptr<SceneObject> clone() const;
+
     friend class DrawManager;
 
 private:

@@ -28,27 +28,27 @@ void MainWindow::keyPressEvent(QKeyEvent* e) {
   try {
 
     if (e->key() == Qt::Key_W) {
-      commands::RotateModelOX comm(ANGLE, model_current_index);
+      commands::RotateModelOX comm(model_current_index, ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_A) {
-      commands::RotateModelOY comm(ANGLE, model_current_index);
+      commands::RotateModelOY comm(model_current_index, ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_S) {
-      commands::RotateModelOX comm(-ANGLE, model_current_index);
+      commands::RotateModelOX comm(model_current_index, -ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_D) {
-      commands::RotateModelOY comm(-ANGLE, model_current_index);
+      commands::RotateModelOY comm(model_current_index, -ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_Z) {
-      commands::RotateModelOZ comm(-ANGLE, model_current_index);
+      commands::RotateModelOZ comm(model_current_index, -ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_X) {
-      commands::RotateModelOZ comm(ANGLE, model_current_index);
+      commands::RotateModelOZ comm(model_current_index, ANGLE);
       this->command_controller.executeCommand(comm);
 
     } else if (e->key() == Qt::Key_I) {
@@ -139,7 +139,8 @@ void MainWindow::update_scene_view(ssize_t camera_index) {
 
 void MainWindow::on_actionupload_model_triggered() {
   try {
-    QString filename = "../models/platonic/cube";// QFileDialog::getOpenFileName(this, QObject::tr("Specify file with model"), QDir::currentPath(), QObject::tr("Any file (*)"));
+    QString filename = "../models/platonic/cube";
+    // QString filename = QFileDialog::getOpenFileName(this, QObject::tr("Specify file with model"), QDir::currentPath(), QObject::tr("Any file (*)"));
     if (filename.isEmpty())
       return;
     commands::UploadView comm(filename.toStdString());

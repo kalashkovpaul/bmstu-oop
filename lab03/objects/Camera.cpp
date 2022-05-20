@@ -1,5 +1,7 @@
 #include "Camera.hpp"
 
+#include "exceptions/sceneExceptions.hpp"
+
 Camera::Camera() {
     right[0] = right[3] = 1;
     up[0] = up[3] = 1;
@@ -82,4 +84,8 @@ void Camera::rollRight(double angle) {
     const Matrix4x4<double> transform = dimensionalTransformations::Rotation(point, angle);
     look = transform * look;
     up = transform * up;
+}
+
+std::shared_ptr<SceneObject> Camera::clone() const {
+    throw SceneCloneException("Camera is not supposed to be cloned");
 }

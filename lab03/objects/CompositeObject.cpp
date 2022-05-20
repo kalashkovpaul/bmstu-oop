@@ -16,7 +16,6 @@ void CompositeObject::transform(BaseTransformation& transformation) {
 }
 
 void CompositeObject::addModel(std::shared_ptr<SceneObject> object) {
-    // std::shared_ptr<Model> ptr = reinterpret_cast<std::shared_ptr<Model>>(object)
     sceneObjects.push_back(object);
     modelsAmount++;
 }
@@ -41,7 +40,6 @@ void CompositeObject::deleteModel(std::size_t index) {
 }
 
 void CompositeObject::addCamera(std::shared_ptr<SceneObject> object) {
-    // reinterpret_cast<std::shared_ptr<Camera>>(object);
     sceneObjects.push_back(object);
     camerasAmount++;
 }
@@ -97,6 +95,10 @@ std::shared_ptr<SceneObject>& CompositeObject::getCamera(std::size_t index) {
         }
         return sceneObjects[i];
     } else {
-        throw SceneOutOfRangeException("[ SCENE ]: getCamera     out of range");
+        throw SceneOutOfRangeException("[ SCENE ]: getCamera out of range");
     }
+}
+
+std::shared_ptr<SceneObject> CompositeObject::clone() const {
+    throw SceneCloneException("CompositeObject is not supposed to be cloned");
 }

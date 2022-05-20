@@ -57,7 +57,6 @@ set(HEADERS
         Facade/Facade.hpp
         gui/drawers.hpp
         gui/mainwindow.hpp
-        managers/BaseManager.hpp
         managers/CameraManager.hpp
         managers/DrawManager.hpp
         managers/ModelManager.hpp
