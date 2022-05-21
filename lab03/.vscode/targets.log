@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May 20 15:16:31 2022
+# Make data base, printed on Sat May 21 14:51:32 2022
 
 # Variables
 
@@ -51,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:46536
+JOURNAL_STREAM = 8:47263
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -75,7 +77,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 955
+MANAGERPID = 995
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -91,7 +93,7 @@ PATH = /home/paul/.nvm/versions/node/v17.6.0/bin:/home/paul/.local/bin:/usr/loca
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1287,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1287
+SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1335,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1335
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = ec8b43a09e064327b7f606ce2a1f99f5
+INVOCATION_ID = 254094b0a56b4df58c6d852c615e01f3
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -135,7 +137,7 @@ PWD = /media/paul/kalashkov/university/forthTerm/oop/repo/lab03
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1206
+SSH_AGENT_PID = 1251
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -191,7 +193,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c6d5deca-a46a-47bf-853d-f164135faaa2.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b72b7c78-2abc-4489-9cdd-6772f2f9042c.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -211,7 +213,7 @@ LC_TELEPHONE = ru_RU.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/paul
+OLDPWD = /media/paul/kalashkov/university/forthTerm
 # default
 .VARIABLES := 
 # automatic
@@ -251,11 +253,11 @@ SNAP_NAME = code
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/7c976b89_4add_4bfd_839f_e76c211a6c5d
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/04a08a34_fe15_4730_9032_e14b6ecf59eb
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.117
+GNOME_TERMINAL_SERVICE = :1.109
 # default
 SUFFIXES := 
 # environment
@@ -277,8 +279,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 2978
+VSCODE_PID = 4160
 # variable set hash-table stats:
+ 
 # Load=134/1024=13%, Rehash=0, Collisions=19/156=12%
 
 # Pattern-specific Variable Values
@@ -287,12 +290,9 @@ VSCODE_PID = 2978
 
 # Directories
 
- 
-make: *** No rule to make target 'all'.  Stop.
+# . (device 2049, inode 438473): 27 files, no impossibilities.
 
-# . (device 2049, inode 438473): 25 files, no impossibilities.
-
-# 25 files, no impossibilities in 1 directories.
+# 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -342,12 +342,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 33 / storage = 301 B / avg = 9 B
-# current buf: size = 8162 B / used = 301 B / count = 33 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 323 B / avg = 9 B
+# current buf: size = 8162 B / used = 323 B / count = 35 / avg = 9 B
 
-# strcache performance: lookups = 36 / hit rate = 8%
+# strcache performance: lookups = 38 / hit rate = 7%
 # hash-table stats:
-# Load=33/8192=0%, Rehash=0, Collisions=1/36=3%
-# Finished Make data base on Fri May 20 15:16:31 2022
+# Load=35/8192=0%, Rehash=0, Collisions=1/38=3%
+# Finished Make data base on Sat May 21 14:51:32 2022
 
  

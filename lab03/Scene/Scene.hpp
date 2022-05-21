@@ -19,8 +19,8 @@ public:
     void addCamera(std::shared_ptr<SceneObject> object);
     void deleteCamera(std::size_t index);
 
-    std::shared_ptr<SceneObject>& getModel(std::size_t index);
-    std::shared_ptr<SceneObject>& getCamera(std::size_t index);
+    std::shared_ptr<SceneObject> getModel(std::size_t index);
+    std::shared_ptr<SceneObject> getCamera(std::size_t index);
 
     friend class DrawManager;
 private:

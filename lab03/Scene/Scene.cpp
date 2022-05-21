@@ -20,10 +20,10 @@ void Scene::deleteCamera(std::size_t index) {
     object.deleteCamera(index);
 }
 
-std::shared_ptr<SceneObject>& Scene::getModel(std::size_t index) {
+std::shared_ptr<SceneObject> Scene::getModel(std::size_t index) {
     return object.getModel(index);
 }
 
-std::shared_ptr<SceneObject>& Scene::getCamera(std::size_t index) {
+std::shared_ptr<SceneObject> Scene::getCamera(std::size_t index) {
     return object.getCamera(index);
 }

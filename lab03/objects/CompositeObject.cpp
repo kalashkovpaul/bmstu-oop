@@ -9,18 +9,20 @@ bool CompositeObject::isVisible() const {
     return true;
 }
 
-void CompositeObject::transform(BaseTransformation& transformation) {
+bool CompositeObject::transform(BaseTransformation& transformation) {
     for (auto& sceneObject: sceneObjects) {
         transformation.transform(sceneObject);
     }
+    return true;
 }
 
-void CompositeObject::addModel(std::shared_ptr<SceneObject> object) {
+bool CompositeObject::addModel(std::shared_ptr<SceneObject> object) {
     sceneObjects.push_back(object);
     modelsAmount++;
+    return true;
 }
 
-void CompositeObject::deleteModel(std::size_t index) {
+bool CompositeObject::deleteModel(std::size_t index) {
     if (index < modelsAmount) {
         std::size_t count = 0;
         std::size_t i = 0;
@@ -37,14 +39,16 @@ void CompositeObject::deleteModel(std::size_t index) {
     } else {
         throw SceneOutOfRangeException("[ SCENE ]: Model out of range");
     }
+    return true;
 }
 
-void CompositeObject::addCamera(std::shared_ptr<SceneObject> object) {
+bool CompositeObject::addCamera(std::shared_ptr<SceneObject> object) {
     sceneObjects.push_back(object);
     camerasAmount++;
+    return true;
 }
 
-void CompositeObject::deleteCamera(std::size_t index) {
+bool CompositeObject::deleteCamera(std::size_t index) {
     if (index < camerasAmount) {
         std::size_t count = 0;
         std::size_t i = 0;
@@ -61,9 +65,10 @@ void CompositeObject::deleteCamera(std::size_t index) {
     } else {
         throw SceneOutOfRangeException("[ SCENE ]: Camera out of range");
     }
+    return true;
 }
 
-std::shared_ptr<SceneObject>& CompositeObject::getModel(std::size_t index) {
+std::shared_ptr<SceneObject> CompositeObject::getModel(std::size_t index) const {
     if (index < modelsAmount) {
         std::size_t count = 0;
         std::size_t i = 0;
@@ -81,7 +86,7 @@ std::shared_ptr<SceneObject>& CompositeObject::getModel(std::size_t index) {
     }
 }
 
-std::shared_ptr<SceneObject>& CompositeObject::getCamera(std::size_t index) {
+std::shared_ptr<SceneObject> CompositeObject::getCamera(std::size_t index) const {
     if (index < camerasAmount) {
         std::size_t count = 0;
         std::size_t i = 0;

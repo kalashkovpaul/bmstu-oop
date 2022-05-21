@@ -15,16 +15,16 @@ public:
 
     bool isVisible() const override;
 
-    void transform(BaseTransformation& transformation);
+    bool transform(BaseTransformation& transformation) override;
 
-    void addModel(std::shared_ptr<SceneObject> scene);
-    void deleteModel(std::size_t index);
+    bool addModel(std::shared_ptr<SceneObject> scene) override;
+    bool deleteModel(std::size_t index) override;
 
-    void addCamera(std::shared_ptr<SceneObject> scene);
-    void deleteCamera(std::size_t index);
+    bool addCamera(std::shared_ptr<SceneObject> scene) override;
+    bool deleteCamera(std::size_t index) override;
 
-    std::shared_ptr<SceneObject>& getModel(std::size_t);
-    std::shared_ptr<SceneObject>& getCamera(std::size_t);
+    std::shared_ptr<SceneObject> getModel(std::size_t) const override;
+    std::shared_ptr<SceneObject> getCamera(std::size_t) const override;
 
     std::shared_ptr<SceneObject> clone() const;
 

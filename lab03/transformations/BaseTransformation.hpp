@@ -4,6 +4,7 @@
 
 #include <memory>
 #include "objects/SceneObject.hpp"
+class SceneObject;
 
 class BaseTransformation {
 public:
@@ -11,7 +12,7 @@ public:
     BaseTransformation(const BaseTransformation&) = delete;
     virtual ~BaseTransformation() = default;
 
-    virtual void transform(std::shared_ptr<SceneObject>&) = 0;
+    virtual void transform(std::shared_ptr<SceneObject>) = 0;
 };
 
 #endif
