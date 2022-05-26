@@ -3,8 +3,9 @@
 #define MODEL_VIEW_HPP_
 
 #include <vector>
-#include "objects/Model.hpp"
+#include <memory>
 #include "exceptions/modelViewExceptions.hpp"
+#include "objects/SceneObject.hpp"
 
 class ModelView {
 public:

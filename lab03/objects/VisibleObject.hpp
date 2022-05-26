@@ -6,11 +6,11 @@
 
 class VisibleObject: public SceneObject {
 public:
-    explicit VisibleObject() = default;
-    VisibleObject(const VisibleObject&) = delete;
+    VisibleObject() = default;
+    VisibleObject(const VisibleObject&) = default;
     ~VisibleObject() override = default;
 
-    bool isVisible() const final;
+    bool isVisible() const override final;
 };
 
 #endif

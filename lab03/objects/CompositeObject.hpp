@@ -4,7 +4,7 @@
 
 #include "objects/SceneObject.hpp"
 #include "exceptions/sceneExceptions.hpp"
-#include "objects/Model.hpp"
+#include "objects/BaseModel.hpp"
 #include "objects/Camera.hpp"
 #include "transformations/BaseTransformation.hpp"
 

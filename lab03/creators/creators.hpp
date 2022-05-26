@@ -5,7 +5,7 @@
 #include <memory>
 #include <map>
 #include "objects/SceneObject.hpp"
-#include "objects/Model.hpp"
+#include "objects/CarcassModel.hpp"
 #include "objects/Camera.hpp"
 #include "exceptions/CreationException.hpp"
 

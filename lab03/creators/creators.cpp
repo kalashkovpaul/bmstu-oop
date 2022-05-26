@@ -11,7 +11,7 @@ std::unique_ptr<Creator> CrCreator::createConCreator() {
 }
 
 Solution::Solution() {
-    registrate(modelId, &CrCreator::createConCreator<Model>);
+    registrate(modelId, &CrCreator::createConCreator<CarcassModel>);
     registrate(cameraId, &CrCreator::createConCreator<Camera>);
 }
 

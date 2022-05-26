@@ -18,14 +18,14 @@ UploadView::UploadView(const std::string filename):
     filename(filename) {}
 
 void UploadView::execute(Facade& facade) {
-    Uploader uploader(filename);
+    CarcassUploader uploader(filename);
     ModelView& modelView = getModelView(facade);
     Solution& solution = getSolution(facade);
     const std::unique_ptr<Creator> cr = solution.create(modelId);
     const std::shared_ptr<SceneObject> object = cr->createSceneObject();
-    const std::shared_ptr<Model> model = std::dynamic_pointer_cast<Model>(object);
+    const std::shared_ptr<BaseModel> model = std::dynamic_pointer_cast<BaseModel>(object);
     UploadManager::uploadModel(uploader, model);
-    modelView.addView(model);
+    modelView.addView(object);
 }
 
 DeleteView::DeleteView(const std::size_t viewIndex): 

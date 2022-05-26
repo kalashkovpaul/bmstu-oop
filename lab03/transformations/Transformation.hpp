@@ -4,7 +4,7 @@
 
 #include "transformations/BaseTransformation.hpp"
 #include "transformations/ITransformation.hpp"
-#include "objects/Model.hpp"
+#include "objects/BaseModel.hpp"
 
 class Transformation: public BaseTransformation {
 public:

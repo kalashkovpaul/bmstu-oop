@@ -28,19 +28,19 @@ set(SOURCES
         objects/Camera.cpp
         objects/CompositeObject.cpp
         objects/InvisibleObject.cpp
-        objects/Model.cpp
         objects/VisibleObject.cpp
         Scene/Scene.cpp
         transformations/cameraCommands.cpp
         transformations/dimensionalTransformations.cpp
         transformations/Transformation.cpp
         transformations/ITransformation.cpp
-        uploaders/Uploader.cpp
-        visitors/DrawVisitor.cpp
+        uploaders/CarcassUploader.cpp
         exceptions/modelViewExceptions.cpp
         ModelView/ModelView.cpp
         creators/creators.cpp
         exceptions/CreationException.cpp
+        objects/CarcassModelImplementator.cpp
+        objects/CarcassModel.cpp
 )
 
 set(HEADERS
@@ -72,7 +72,7 @@ set(HEADERS
         objects/Camera.hpp
         objects/CompositeObject.hpp
         objects/InvisibleObject.hpp
-        objects/Model.hpp
+        objects/BaseModel.hpp
         objects/SceneObject.hpp
         objects/VisibleObject.hpp
         Scene/Scene.hpp
@@ -82,13 +82,14 @@ set(HEADERS
         transformations/ITransformation.hpp
         transformations/Transformation.hpp
         uploaders/BaseUploader.hpp
-        uploaders/Uploader.hpp
-        visitors/Visitor.hpp
-        visitors/DrawVisitor.hpp
+        uploaders/CarcassUploader.hpp
         exceptions/modelViewExceptions.hpp
         ModelView/ModelView.hpp
         creators/creators.hpp
         exceptions/CreationException.hpp
+        objects/BaseModelImplementator.hpp
+        objects/CarcassModelImplementator.hpp
+        objects/CarcassModel.hpp
 )
 
 add_executable(lab03 ${SOURCES} ${HEADERS})

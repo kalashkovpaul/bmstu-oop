@@ -9,7 +9,7 @@ class BaseTransformation;
 
 class SceneObject {
 public:
-    explicit SceneObject() = default;
+    SceneObject() = default;
     SceneObject(const SceneObject&) = default;
     virtual ~SceneObject() = default;
 
@@ -23,8 +23,8 @@ public:
     virtual bool addCamera(std::shared_ptr<SceneObject> scene) { return false; }
     virtual bool deleteCamera(std::size_t index) { return false; }
 
-    virtual std::shared_ptr<SceneObject> getModel(std::size_t) const { return std::shared_ptr<SceneObject>(nullptr); } // TODO
-    virtual std::shared_ptr<SceneObject> getCamera(std::size_t) const { return std::shared_ptr<SceneObject>(nullptr); } // TODO
+    virtual std::shared_ptr<SceneObject> getModel(std::size_t) const { return std::shared_ptr<SceneObject>(nullptr); }
+    virtual std::shared_ptr<SceneObject> getCamera(std::size_t) const { return std::shared_ptr<SceneObject>(nullptr); } 
 
     virtual std::shared_ptr<SceneObject> clone() const = 0;
 };
