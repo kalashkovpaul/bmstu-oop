@@ -41,6 +41,7 @@ set(SOURCES
         exceptions/CreationException.cpp
         objects/CarcassModelImplementator.cpp
         objects/CarcassModel.cpp
+        visitors/Visitor.cpp
 )
 
 set(HEADERS
@@ -90,6 +91,7 @@ set(HEADERS
         objects/BaseModelImplementator.hpp
         objects/CarcassModelImplementator.hpp
         objects/CarcassModel.hpp
+        visitors/Visitor.hpp
 )
 
 add_executable(lab03 ${SOURCES} ${HEADERS})

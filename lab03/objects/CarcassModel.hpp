@@ -12,7 +12,7 @@ public:
     CarcassModel& operator=(const CarcassModel&);
     CarcassModel& operator=(CarcassModel&&) noexcept;
 
-    void draw(BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) override;
+    void accept(Visitor& visitor) override;
 
     void transform(Matrix4x4<double>& matrix) override;
 

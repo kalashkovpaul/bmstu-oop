@@ -16,6 +16,10 @@ public:
     
     void transform(Matrix4x4<double>& matrix) override;
 
+    std::vector<Point3D<double>> getVertices() const;
+
+    std::vector<Edge> getEdges() const;
+
 private:
     std::vector<Point3D<double>> vertices;
     std::vector<Edge> edges;

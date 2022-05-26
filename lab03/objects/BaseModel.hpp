@@ -6,6 +6,7 @@
 #include "objects/VisibleObject.hpp"
 #include "objects/BaseModelImplementator.hpp"
 #include "objects/Camera.hpp"
+#include "visitors/Visitor.hpp"
 
 class BaseModel: public VisibleObject {
 public:
@@ -16,7 +17,7 @@ public:
 
     void setImplementator(std::shared_ptr<BaseModelImplementator> imp) { implementator = imp; }
 
-    virtual void draw(BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) = 0;
+    virtual void accept(Visitor& visitor) = 0;
 
     virtual void transform(Matrix4x4<double>& matrix) = 0;
 

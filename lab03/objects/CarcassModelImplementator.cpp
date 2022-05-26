@@ -5,6 +5,14 @@ CarcassModelImplementator::CarcassModelImplementator(
     vertices(vertices),
     edges(edges)  { }
 
+std::vector<Point3D<double>> CarcassModelImplementator::getVertices() const {
+    return vertices;
+}
+
+std::vector<Edge> CarcassModelImplementator::getEdges() const {
+    return edges;
+}
+
 void CarcassModelImplementator::draw(BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) {
     Matrix4x4<double> matrix = camera->getViewMatrix();
     for (const auto& edge : edges) {

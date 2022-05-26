@@ -23,8 +23,8 @@ CarcassModel& CarcassModel::operator=(CarcassModel&& other) noexcept {
     return *this;
 }
 
-void CarcassModel::draw(BaseDrawer& drawer, const std::shared_ptr<Camera>& camera) {
-    implementator->draw(drawer, camera);
+void CarcassModel::accept(Visitor& visitor) {
+    visitor.visit(std::dynamic_pointer_cast<CarcassModelImplementator>(implementator));
 }
 
 void CarcassModel::transform(Matrix4x4<double>& matrix) {
