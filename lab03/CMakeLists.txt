@@ -25,6 +25,7 @@ set(SOURCES
         managers/DrawManager.cpp
         managers/ModelManager.cpp
         managers/UploadManager.cpp
+        managers/SceneManager.cpp
         objects/Camera.cpp
         objects/CompositeObject.cpp
         objects/InvisibleObject.cpp
@@ -62,6 +63,7 @@ set(HEADERS
         managers/DrawManager.hpp
         managers/ModelManager.hpp
         managers/UploadManager.hpp
+        managers/SceneManager.hpp
         math3D/Edge/Edge.h
         math3D/Edge/Edge.hpp
         math3D/Matrix4x4/Matrix4x4.h

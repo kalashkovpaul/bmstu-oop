@@ -11,6 +11,7 @@
 #include "managers/ModelManager.hpp"
 #include "managers/DrawManager.hpp"
 #include "managers/CameraManager.hpp"
+#include "managers/SceneManager.hpp"
 #include "gui/drawers.hpp"
 #include "Facade/Facade.hpp"
 class Facade;
@@ -21,17 +22,26 @@ class Scene;
 
 class ModelView;
 
+constexpr std::size_t SceneCommandID = 0;
+constexpr std::size_t ModelViewCommandID = 1;
+constexpr std::size_t SceneAndViewCommandID = 2;
+constexpr std::size_t SceneAndSolutionCommandID = 3;
+constexpr std::size_t ViewAndSolutionCommandID = 4;
+
 class Command {
 public:
     Command() = default;
     Command(const Command&) = delete;
     virtual ~Command() = default;
 
-    virtual void execute(Facade& facade) = 0;
-protected:
-    Scene& getScene(Facade& facade);
-    ModelView& getModelView(Facade& facade);
-    Solution& getSolution(Facade& facade);
+    virtual void execute(Facade& facade) {};
+    virtual std::size_t getType() { return 17;}
+
+    virtual void execute(Scene& scene) {}
+    virtual void execute(ModelView& modelView) {}
+    virtual void execute(Scene& scene, ModelView& modelView) {}
+    virtual void execute(Scene& scene, Solution& solution) {}
+    virtual void execute(ModelView& modelView, Solution& solution) {}
 };
 
 namespace commands {
@@ -42,7 +52,9 @@ public:
     UploadView(const UploadView&) = delete;
     ~UploadView() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return ViewAndSolutionCommandID; }
+
+    void execute(ModelView& modelView, Solution& solution) override;
 private:
     const std::string filename;
 };
@@ -53,7 +65,9 @@ public:
     DeleteView(const DeleteView&) = delete;
     ~DeleteView() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return ModelViewCommandID; }
+
+    virtual void execute(ModelView& modelView) override;
     
 private:
     const std::size_t viewIndex;
@@ -65,7 +79,9 @@ public:
     AddModel(const AddModel&) = delete;
     ~AddModel() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneAndViewCommandID; }
+
+    virtual void execute(Scene& scene, ModelView& modelView) override;
 
 private:
     const std::size_t viewIndex;
@@ -77,7 +93,9 @@ public:
     DeleteModel(const DeleteModel&) = delete;
     ~DeleteModel() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const std::size_t modelIndex;
@@ -89,7 +107,9 @@ public:
     AddCamera(const AddCamera&) = delete;
     ~AddCamera() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneAndSolutionCommandID; }
+
+    virtual void execute(Scene& scene, Solution& solution) override;
 };
 
 class DeleteCamera: public Command {
@@ -98,7 +118,9 @@ public:
     DeleteCamera(const DeleteCamera&) = delete;
     ~DeleteCamera() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const std::size_t cameraIndex;
@@ -110,7 +132,9 @@ public:
     TranslateModel(const TranslateModel&) = delete;
     ~TranslateModel() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t modelIndex;
@@ -123,7 +147,9 @@ public:
     RotateModelOX(const RotateModelOX&) = delete;
     ~RotateModelOX() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t modelIndex;
@@ -136,7 +162,9 @@ public:
     RotateModelOY(const RotateModelOY&) = delete;
     ~RotateModelOY() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t modelIndex;
@@ -149,7 +177,9 @@ public:
     RotateModelOZ(const RotateModelOZ&) = delete;
     ~RotateModelOZ() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t modelIndex;
@@ -162,7 +192,9 @@ public:
     ScaleModel(const ScaleModel&) = delete;
     ~ScaleModel() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t modelIndex;
@@ -175,7 +207,9 @@ public:
     Draw(const Draw&) = delete;
     ~Draw() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const ssize_t cameraIndex;
@@ -188,7 +222,9 @@ public:
     RollLook(const RollLook&) = delete;
     ~RollLook() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const std::size_t cameraIndex;
@@ -201,7 +237,9 @@ public:
     RollRight(const RollRight&) = delete;
     ~RollRight() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const std::size_t cameraIndex;
@@ -214,7 +252,9 @@ public:
     RollUp(const RollUp&) = delete;
     ~RollUp() = default;
 
-    virtual void execute(Facade& facade) override;
+    std::size_t getType() override { return SceneCommandID; }
+
+    virtual void execute(Scene& scene) override;
 
 private:
     const std::size_t cameraIndex;
