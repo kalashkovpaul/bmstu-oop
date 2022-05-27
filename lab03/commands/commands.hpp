@@ -35,7 +35,7 @@ public:
     virtual ~Command() = default;
 
     virtual void execute(Facade& facade) {};
-    virtual std::size_t getType() { return 17;}
+    virtual std::size_t getType() { return 0;}
 
     virtual void execute(Scene& scene) {}
     virtual void execute(ModelView& modelView) {}
