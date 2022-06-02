@@ -17,7 +17,7 @@ class ControlPanel: public QObject {
     };
 
 public:
-    explicit ControlPanel(int floorsAmount, QObject *parent = nullptr, Logger *logger = nullptr);
+    explicit ControlPanel(int floorsAmount, Logger *logger = nullptr);
 
     void setLogger(Logger *logger);
 

@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Лаб.№4 Лифт</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLCDNumber" name="lcdNumber">
@@ -45,7 +45,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Floors</string>
+     <string>Этажи</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
@@ -75,7 +75,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Cab</string>
+     <string>Кабина</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <property name="spacing">
@@ -106,7 +106,7 @@
   <customwidget>
    <class>Logger</class>
    <extends>QPlainTextEdit</extends>
-   <header>logger.h</header>
+   <header>Logger/Logger.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

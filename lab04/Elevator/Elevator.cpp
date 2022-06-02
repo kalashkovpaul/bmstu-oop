@@ -1,9 +1,8 @@
 #include "Elevator/Elevator.hpp"
 
-Elevator::Elevator(int floors, QObject* parent, Logger *logger):
-    QObject(parent),
-    control(floors, parent, logger),
-    cab(parent, logger),
+Elevator::Elevator(int floors, Logger *logger):
+    control(floors, logger),
+    cab(logger),
     logger(logger) {
     connect(this, &Elevator::called, &control, &ControlPanel::call);
     connect(&control, &ControlPanel::called, &cab, &Cab::call);

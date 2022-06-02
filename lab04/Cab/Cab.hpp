@@ -16,7 +16,7 @@ class Cab: public QObject {
     };
 
 public:
-    explicit Cab(QObject *parent = nullptr, Logger* logger = nullptr);
+    explicit Cab(Logger* logger = nullptr);
 
     void setLogger(Logger* logger);
 
@@ -46,4 +46,4 @@ private:
     constexpr static int timePerFloor = 1000;
 };
 
-#endif CAB_HPP_
+#endif

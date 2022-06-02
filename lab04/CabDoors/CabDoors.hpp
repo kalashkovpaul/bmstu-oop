@@ -17,7 +17,7 @@ class CabDoors: public QObject {
     };
 
 public:
-    explicit CabDoors(QObject *parent = nullptr, Logger *logger = nullptr);
+    explicit CabDoors(Logger *logger = nullptr);
 
     void setLogger(Logger *logger);
 

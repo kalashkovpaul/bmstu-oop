@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget* parent):
     ui(new Ui::MainWindow),
     floorButtons(floorsAmount),
     cabButtons(floorsAmount),
-    elevator(floorsAmount, parent) {
+    elevator(floorsAmount) {
     ui->setupUi(this);
     ui->logger->setReadOnly(true);
     elevator.setLogger(ui->logger);
@@ -30,12 +30,12 @@ void MainWindow::createButtons(QVector<QCheckBox*>& buttons, QLayout *layout, \
     for (int i = floorsAmount - 1; i >= 0; --i) {
         buttons[i] = new QCheckBox(QString::number(i + 1));
         layout->addWidget(buttons[i]);
-        connect(buttons[i], &QCheckBox::clicked, std::bind(slot, this, i))
+        connect(buttons[i], &QCheckBox::clicked, std::bind(slot, this, i));
     }
 }
 
 void MainWindow::createFloorButtons() {
-    createButtons(floorButtons, ui->floosGroupBox->layout(), &MainWindow::floorButtonClicked);
+    createButtons(floorButtons, ui->floorsGroupBox->layout(), &MainWindow::floorButtonClicked);
 }
 
 void MainWindow::createCabButtons() {

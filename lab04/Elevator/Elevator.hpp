@@ -3,13 +3,14 @@
 #define ELEVATOR_HPP_
 
 #include <QObject>
+#include <memory>
 #include "ControlPanel/ControlPanel.hpp"
 #include "Cab/Cab.hpp"
 
 class Elevator: public QObject {
     Q_OBJECT
 public:
-    explicit Elevator(int floorsAmount, QObject *parent = nullptr, Logger *logger = nullptr);
+    explicit Elevator(int floorsAmount, Logger *logger = nullptr);
     
     void setLogger(Logger *logger);
 

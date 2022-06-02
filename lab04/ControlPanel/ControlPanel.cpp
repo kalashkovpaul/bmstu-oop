@@ -1,7 +1,6 @@
 #include "ControlPanel/ControlPanel.hpp"
 
-ControlPanel::ControlPanel(int floors, QObject *parent, Logger *logger):
-    QObject(parent),
+ControlPanel::ControlPanel(int floors, Logger *logger):
     state(State::idle),
     floorsAmount(floorsAmount),
     floor(0),
@@ -16,7 +15,6 @@ void ControlPanel::setLogger(Logger *logger) {
 void ControlPanel::call(int floor) {
     log(logger, "Лифт вызван на " + QString::number(floor + 1) + " этаж");
     isTarget[floor] = true;
-    
     if (state == State::idle) {
         if (this->floor == floor) {
             emit stop();
@@ -42,18 +40,18 @@ void ControlPanel::passFloor() {
         state = State::waiting;
         isTarget[floor] = false;
         emit stop();
-        emit stopped();
+        emit stopped(floor);
     } else {
         emit move();
     }
 }
 
 int ControlPanel::nextTarget() const {
-    for (int target = floor + direction; 0 <= target && target <= floorsAmount; target += direction) 
+    for (int target = floor + direction; 0 <= target && target < floorsAmount; target += direction) 
         if (isTarget[target])
             return target;
-    for (int target = floor - direction; 0 <= target && target <= floorsAmount; target -= direction) 
-        if target(isTarget[target])
+    for (int target = floor - direction; 0 <= target && target < floorsAmount; target -= direction) 
+        if (isTarget[target])
             return target;
     return -1;
 }
@@ -66,7 +64,7 @@ void ControlPanel::lookAround() {
             direction = dir(target, floor);
             emit called(direction);
         } else {
-            state == State::idle;
+            state = State::idle;
         }
     }
 }

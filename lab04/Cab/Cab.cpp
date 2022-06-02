@@ -1,9 +1,8 @@
 #include "Cab/Cab.hpp"
 
-Cab::Cab(Object *parent, Logger *logger):
-    QObject(parent),
-    state(State::stanging),
-    doors(parent, logger),
+Cab::Cab(Logger* logger):
+    state(State::standing),
+    doors(logger),
     direction(Direction::stay),
     logger(logger) {
     passFloorTimer.setInterval(timePerFloor);
