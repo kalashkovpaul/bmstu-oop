@@ -33,7 +33,7 @@ signals: // out
 public slots:
     void call(int floor);
     void passFloor();
-    void lookArount();
+    void lookAround();
 
 private:
     State state;

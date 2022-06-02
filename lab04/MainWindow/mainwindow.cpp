@@ -5,7 +5,7 @@
 
 MainWindow::MainWindow(QWidget* parent):
     QMainWindow(parent),
-    ui(new UI::MainWindow),
+    ui(new Ui::MainWindow),
     floorButtons(floorsAmount),
     cabButtons(floorsAmount),
     elevator(floorsAmount, parent) {

@@ -7,7 +7,7 @@
 #include <QVector>
 #include "Elevator/Elevator.hpp"
 
-namespace UI {
+namespace Ui {
     class MainWindow;
 }
 
@@ -28,7 +28,7 @@ private slots:
 
 private:
     constexpr static int floorsAmount = 16;
-    UI::MainWindow *ui;
+    Ui::MainWindow *ui;
     QVector<QCheckBox *> floorButtons;
     QVector<QCheckBox *> cabButtons;
     Elevator elevator;
