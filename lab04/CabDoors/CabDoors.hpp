@@ -21,7 +21,7 @@ public:
 
     void setLogger(Logger *logger);
 
-signals: // out
+signals: 
     void opened();
     void closed();
 

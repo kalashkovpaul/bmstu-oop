@@ -1,4 +1,5 @@
 #include "ControlPanel/ControlPanel.hpp"
+#include <iostream>
 
 ControlPanel::ControlPanel(int floors, Logger *logger):
     state(State::idle),
@@ -16,13 +17,13 @@ void ControlPanel::call(int floor) {
     log(logger, "Лифт вызван на " + QString::number(floor + 1) + " этаж");
     isTarget[floor] = true;
     if (state == State::idle) {
+        state = State::busy;
         if (this->floor == floor) {
             emit stop();
             emit stopped(floor);
         } else {
             const int target = floor;
             Q_ASSERT(0 <= target && target < floorsAmount);
-            state = State::busy;
             direction = dir(target, this->floor);
             emit called(direction);
         }
@@ -35,9 +36,9 @@ void ControlPanel::passFloor() {
     log(logger, "Лифт " + \
         QString(direction == Direction::up ? "поднялся" : "опустился") + " с " + \
         QString::number(floor - direction + 1) + " на " + QString::number(floor + 1) + " этаж");
+    state = State::busy;
     if (isTarget[floor]) {
         log(logger, "Лифт остановился на " + QString::number(floor + 1) + " этаже");
-        state = State::waiting;
         isTarget[floor] = false;
         emit stop();
         emit stopped(floor);
@@ -57,14 +58,12 @@ int ControlPanel::nextTarget() const {
 }
 
 void ControlPanel::lookAround() {
-    if (state == State::waiting) {
+    if (state == State::busy) {
         const int target = nextTarget();
+        state = State::idle;
         if (0 <= target && target <= floorsAmount) {
-            state = State::busy;
             direction = dir(target, floor);
             emit called(direction);
-        } else {
-            state = State::idle;
         }
     }
 }

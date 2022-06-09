@@ -35,10 +35,10 @@ void Cab::move() {
 
 void Cab::stop() {
     passFloorTimer.stop();
-    if (state != State::standing) {
+    // if (state != State::standing) {
         state = State::standing;
         emit stopped();
-    }
+    // }
 }
 
 void Cab::call(Direction direction) {

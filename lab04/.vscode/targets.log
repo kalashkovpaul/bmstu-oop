@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun  2 16:30:25 2022
+# Make data base, printed on Thu Jun  9 22:36:35 2022
 
 # Variables
 
@@ -51,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48451
+JOURNAL_STREAM = 8:46202
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -75,13 +77,13 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1001
+MANAGERPID = 976
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 LC_NAME = ru_RU.UTF-8
 # environment
-VSCODE_CWD = /media/paul/kalashkov/university/forthTerm/oop/repo
+VSCODE_CWD = /media/paul/kalashkov/university/forthTerm/oop
 # environment
 GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
 # default
@@ -91,7 +93,7 @@ PATH = /home/paul/.nvm/versions/node/v17.6.0/bin:/home/paul/.local/bin:/usr/loca
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1344,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1344
+SESSION_MANAGER = local/paul-BOHK-WAX9X:@/tmp/.ICE-unix/1308,unix/paul-BOHK-WAX9X:/tmp/.ICE-unix/1308
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 45627f527285458090017c1dc2332fcb
+INVOCATION_ID = 01141066184948c58c825455cd67753d
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -135,7 +137,7 @@ PWD = /media/paul/kalashkov/university/forthTerm/oop/repo/lab04
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1263
+SSH_AGENT_PID = 1227
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -191,7 +193,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0f2bf415-93e1-43f2-a740-20f74cff9bb6.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e917a679-a937-41ee-a182-2484d01f3dcc.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -211,7 +213,7 @@ LC_TELEPHONE = ru_RU.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /media/paul/kalashkov/university/forthTerm/oop
+OLDPWD = /home/paul
 # default
 .VARIABLES := 
 # automatic
@@ -249,11 +251,11 @@ SNAP_NAME = code
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/2056672c_ad77_4577_8003_149fa72d50eb
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/01791fa9_9ff7_40b8_abd9_aa6e31d15d13
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.148
+GNOME_TERMINAL_SERVICE = :1.150
 # default
 SUFFIXES := 
 # environment
@@ -275,7 +277,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 55072
+VSCODE_PID = 5986
 # variable set hash-table stats:
 # Load=133/1024=13%, Rehash=0, Collisions=19/155=12%
 
@@ -284,13 +286,10 @@ VSCODE_PID = 55072
 # No pattern-specific variable values.
 
 # Directories
- 
-make: *** No rule to make target 'all'.  Stop.
 
+# . (device 2049, inode 455413): 17 files, no impossibilities.
 
-# . (device 2049, inode 455413): 14 files, no impossibilities.
-
-# 14 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -300,6 +299,7 @@ make: *** No rule to make target 'all'.  Stop.
 
 # Not a target:
 all:
+ 
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -340,12 +340,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 196 B / avg = 8 B
-# current buf: size = 8162 B / used = 196 B / count = 22 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 231 B / avg = 9 B
+# current buf: size = 8162 B / used = 231 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 25 / hit rate = 12%
+# strcache performance: lookups = 28 / hit rate = 10%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Thu Jun  2 16:30:26 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/28=4%
+# Finished Make data base on Thu Jun  9 22:36:35 2022
 
  

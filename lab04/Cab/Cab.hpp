@@ -20,11 +20,11 @@ public:
 
     void setLogger(Logger* logger);
 
-signals: // in
+signals:
     void called();
     void stopped();
 
-signals: // out
+signals:
     void passedFloor();
     void ready();
 

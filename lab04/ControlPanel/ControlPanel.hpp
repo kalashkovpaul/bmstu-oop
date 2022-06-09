@@ -12,8 +12,7 @@ class ControlPanel: public QObject {
 
     enum class State {
         busy,
-        idle,
-        waiting
+        idle
     };
 
 public:
@@ -21,20 +20,19 @@ public:
 
     void setLogger(Logger *logger);
 
-signals: // in
+signals:
     void move();
     void stop();
     void called(Direction direction);
-
-signals: // out
-    void passedFloor(int floor);
-    void stopped(int floor);
 
 public slots:
     void call(int floor);
     void passFloor();
     void lookAround();
 
+signals:
+    void passedFloor(int floor);
+    void stopped(int floor);
 private:
     State state;
     const int floorsAmount;

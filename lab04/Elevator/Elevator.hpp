@@ -14,10 +14,10 @@ public:
     
     void setLogger(Logger *logger);
 
-signals: // in
+signals:
     void called(int floor);
 
-signals: // out
+signals:
     void stopped(int floor);
     void passedFloor(int floor);
 

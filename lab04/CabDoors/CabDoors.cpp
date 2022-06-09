@@ -15,7 +15,6 @@ CabDoors::CabDoors(Logger *logger):
     connect(&openTimer, &QTimer::timeout, this, &CabDoors::open);
     connect(&closeTimer, &QTimer::timeout, this, &CabDoors::close);
     connect(&holdTimer, &QTimer::timeout, this, &CabDoors::startClosing);
-    connect(this, &CabDoors::opened, &holdTimer, static_cast<void (QTimer::*)()>(&QTimer::start));
 }
 
 void CabDoors::setLogger(Logger *logger) {
@@ -49,7 +48,7 @@ void CabDoors::open() {
     if (state == State::opening) {
         log(logger, "Двери открыты");
         state = State::opened;
-        emit opened();
+        holdTimer.start();
     }
 }
 
